@@ -10,7 +10,6 @@ import {
   Stack,
   HStack
 } from '@chakra-ui/react'
-// import { Container } from '../components/Container'
 import { Main } from '../components/Main'
 import { DarkModeSwitch } from '../components/DarkModeSwitch'
 import { Footer } from '../components/Footer'
