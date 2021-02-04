@@ -50,7 +50,7 @@ const seeds: SeedParams = {
 }
 
 const seedKey = (conference: 'afc' | 'nfc', seed: 1 | 2 | 3 | 4 | 5 | 6 | 7): keyof SeedParams => {
-  return `${conference}${seed}` as const
+  return `${conference}${seed}` as keyof SeedParams
 }
 
 interface FieldsParams {

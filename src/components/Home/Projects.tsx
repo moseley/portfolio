@@ -5,15 +5,15 @@ import { Glass } from '../UI/Glass'
 import NextLink from 'next/link'
 
 const projects = [
-  { title: 'Blockchain Simplified', summary: 'Learn how blockchains work!', route: '/', img: '', src: '' },
-  { title: 'Tournament Bracket', summary: 'Having fun with flexbox layouts.', route: '/projects/bracket', img: '', src: '' },
+  { title: 'Cryptocurrency Blockchain Simplified', summary: 'Learn how blockchains work! A quick example with JS', route: '/', img: '', src: '' },
+  { title: 'NFL Tournament Bracket', summary: 'Having fun with flexbox layouts.', route: '/projects/bracket', img: '', src: '' },
   { title: 'Monte Hall Game Theory', summary: 'Learn the math behind the gameshow.', route: '/projects/montehall', img: '', src: '' }
 ]
 
 const Projects = () => {
   const { colorMode } = useColorMode()
   const isDark = colorMode === 'dark'
-  
+
   return (
     <>
       <Heading fontSize='2xl' mt='2rem'>Samples</Heading>
