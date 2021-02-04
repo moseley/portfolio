@@ -23,7 +23,6 @@ const Breadcrumb = () => {
           </BreadcrumbItem>
           {pages.map((path: string, i: number) => {
             currentPath = `${currentPath}/${path}`
-            console.log(currentPath)
             return (
               <BreadcrumbItem isCurrentPage={i === (pages.length - 1) ? true : false}>
                 <BreadcrumbLink href={currentPath}>{pageTitle(path)}</BreadcrumbLink>
