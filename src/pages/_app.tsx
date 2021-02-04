@@ -1,12 +1,25 @@
 import { ChakraProvider } from '@chakra-ui/react'
+import { motion } from 'framer-motion'
+import UI from '../components/UI'
 
 import theme from '../theme'
 import { AppProps } from 'next/app'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps, router }: AppProps) {
   return (
     <ChakraProvider resetCSS theme={theme}>
-      <Component {...pageProps} />
+      <motion.div key={router.route} initial='pageInitial' animate='pageAnimate' variants={{
+        pageinitial: {
+          opacity: 0
+        },
+        pageAnimate: {
+          opacity: 1
+        }
+      }}>
+        <UI>
+          <Component {...pageProps} />
+        </UI>
+      </motion.div>
     </ChakraProvider>
   )
 }
