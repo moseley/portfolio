@@ -6,8 +6,8 @@ import NextLink from 'next/link'
 
 const projects = [
   { title: 'Cryptocurrency Blockchain Simplified', summary: 'Learn how blockchains work! A quick example with JS', route: '/', img: '', src: '' },
-  { title: 'NFL Tournament Bracket', summary: 'Having fun with flexbox layouts.', route: '/projects/bracket', img: '', src: '' },
-  { title: 'Monte Hall Game Theory', summary: 'Learn the math behind the gameshow.', route: '/projects/montehall', img: '', src: '' }
+  { title: 'NFL Tournament Bracket', summary: 'Having fun with flexbox layouts.', route: '/samples/bracket', img: '', src: '' },
+  { title: 'Monte Hall Game Theory', summary: 'Learn the math behind the gameshow.', route: '/samples/monte-hall', img: '', src: '' }
 ]
 
 const Projects = () => {
@@ -30,7 +30,7 @@ const Projects = () => {
               <Glass p='1rem'>
                 <Heading fontSize='lg'>{project.title}</Heading>
                 <Text fontSize='sm' py='1rem'>{project.summary}</Text>
-                <ButtonGroup size='xs' isAttached variant='solid' colorScheme={isDark ? 'blackAlpha' : 'whiteAlpha'}>
+                <ButtonGroup size='xs' isAttached variant='solid' colorScheme={isDark ? 'blackAlpha' : 'whiteAlpha'} justifyContent='center'>
                   <NextLink href={project.route} passHref>
                     <Button mr='-px' passHref>View</Button>
                   </NextLink>
