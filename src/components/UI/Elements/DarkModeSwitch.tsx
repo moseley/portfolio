@@ -5,6 +5,7 @@ export const DarkModeSwitch = () => {
   const isDark = colorMode === 'dark'
   return (
     <Switch
+      aria-label='Color Mode Toggle'
       position='fixed'
       top='1rem'
       right='1rem'
