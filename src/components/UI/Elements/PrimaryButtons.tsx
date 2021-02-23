@@ -29,7 +29,7 @@ export const PrimaryButtons = () => {
       <Box p={2}>
         <Link
           _hover={undefined}
-          href='https://jeremymoseley.com/JeremyMoseley.pdf'
+          href='/resume.pdf'
           title='Download Resume'
           isExternal>
           <Button
