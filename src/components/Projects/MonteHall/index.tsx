@@ -8,8 +8,7 @@ interface DoorParams {
   onClick: () => void
 }
 
-const zonk =
-  'https://upload.wikimedia.org/wikipedia/en/a/a6/2009lmadzonkgoat.jpg'
+// const zonk = 'https://upload.wikimedia.org/wikipedia/en/a/a6/2009lmadzonkgoat.jpg'
 
 const Door = ({ num, win, firstPick, onClick }: DoorParams) => {
   React.useEffect(() => {}, [])

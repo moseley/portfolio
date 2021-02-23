@@ -1,6 +1,5 @@
-import { Heading, Text, Box, Button, useColorMode } from '@chakra-ui/react'
+import { Heading, Text, Box, Button } from '@chakra-ui/react'
 import { SiGithub } from 'react-icons/si'
-import { MotionBox } from '@components/UI/Elements/MotionBox'
 import { Glass } from '@components/UI/Background/Glass'
 import NextLink from 'next/link'
 
@@ -13,18 +12,7 @@ interface ProjectProps {
 }
 
 export const ProjectCard = ({ title, summary, route, src }: ProjectProps) => {
-  const { colorMode } = useColorMode()
-  const isDark = colorMode === 'dark'
   return (
-    // <MotionBox
-    //   key={title}
-    //   whileHover={{
-    //     scale: 1.02,
-    //     transition: {
-    //       ease: 'easeOut',
-    //       duration: 0.2
-    //     }
-    //   }}>
     <Glass p='1rem'>
       <Heading fontSize='lg'>{title}</Heading>
       <Text fontSize='sm' py='1rem'>
@@ -51,6 +39,5 @@ export const ProjectCard = ({ title, summary, route, src }: ProjectProps) => {
         )}
       </Box>
     </Glass>
-    // </MotionBox>
   )
 }
