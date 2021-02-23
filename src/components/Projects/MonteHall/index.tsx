@@ -8,6 +8,9 @@ interface DoorParams {
   onClick: () => void
 }
 
+const zonk =
+  'https://upload.wikimedia.org/wikipedia/en/a/a6/2009lmadzonkgoat.jpg'
+
 const Door = ({ num, win, firstPick, onClick }: DoorParams) => {
   React.useEffect(() => {}, [])
   return (
@@ -25,13 +28,18 @@ const MonteHall = () => {
   const [pick, setPick] = React.useState<number | null>(null)
   const doors = ['1', '2', '3']
   const win = Math.floor(Math.random() * doors.length - 1)
-  const goats = doors.filter(a => a !== doors[win])
+  const goats = doors.filter((a) => a !== doors[win])
   return (
     <>
       {pick ? (
         <>
-          <p>You've selected Door #{doors[pick]}. Here is some additional info...</p>
-          <p>You did not select Door #{goats.find(a => a !== doors[pick])} which happens to be a goat.</p>
+          <p>
+            You've selected Door #{doors[pick]}. Here is some additional info...
+          </p>
+          <p>
+            You did not select Door #{goats.find((a) => a !== doors[pick])}{' '}
+            which happens to be a goat.
+          </p>
           <p>Would you like to reconsider your selection?</p>
         </>
       ) : (
@@ -39,7 +47,12 @@ const MonteHall = () => {
       )}
       {doors.map((num: string, i: number) => {
         return (
-          <Door num={num} win={i === win} firstPick={pick ? true : false} onClick={() => setPick(i)} />
+          <Door
+            num={num}
+            win={i === win}
+            firstPick={pick ? true : false}
+            onClick={() => setPick(i)}
+          />
         )
       })}
     </>

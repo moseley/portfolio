@@ -1,11 +1,17 @@
-import { Breadcrumb as ChakraBreadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react'
+import {
+  Breadcrumb as ChakraBreadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink
+} from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 
 const pageTitle = (path: string): string => {
   const words = path.replace('-', ' ').split(' ')
-  const title = words.map(word => {
-    return `${word[0].toUpperCase()}${word.substring(1)}`
-  }).join(' ')
+  const title = words
+    .map((word) => {
+      return `${word[0].toUpperCase()}${word.substring(1)}`
+    })
+    .join(' ')
   return title
 }
 
@@ -24,14 +30,17 @@ const Breadcrumb = () => {
           {pages.map((path: string, i: number) => {
             currentPath = `${currentPath}/${path}`
             return (
-              <BreadcrumbItem isCurrentPage={i === (pages.length - 1) ? true : false}>
-                <BreadcrumbLink href={currentPath}>{pageTitle(path)}</BreadcrumbLink>
+              <BreadcrumbItem
+                key={currentPath}
+                isCurrentPage={i === pages.length - 1 ? true : false}>
+                <BreadcrumbLink href={currentPath}>
+                  {pageTitle(path)}
+                </BreadcrumbLink>
               </BreadcrumbItem>
             )
           })}
         </ChakraBreadcrumb>
       )}
-      
     </>
   )
 }

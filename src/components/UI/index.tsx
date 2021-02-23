@@ -1,29 +1,34 @@
 import * as React from 'react'
-import { Flex } from '@chakra-ui/react'
-import { Background } from './Background'
-import { DarkModeSwitch } from './DarkModeSwitch'
-import { Glass } from './Glass'
-import { Sidebar } from './Sidebar'
-import { Main } from './Main'
-import { Breadcrumb } from './Breadcrumb'
-import { Footer } from './Footer'
+import { Box, BoxProps, Container, Text } from '@chakra-ui/react'
+import { Photo } from './Background/Photo'
+import { DarkModeSwitch } from './Elements/DarkModeSwitch'
+import { Glass } from './Background/Glass'
+import { Breadcrumb } from './Elements/Breadcrumb'
+import { Footer } from './Sections/Footer'
+import { PrimaryText, PrimaryButtons } from './Elements'
 
-const UI = ({ children }: { children: React.ReactNode }) => {
+export const UI = (props: BoxProps) => {
   return (
-    <Background>
-      <DarkModeSwitch />
-      <Glass mt='2rem' overflowY='auto'>
-        <Flex>
-          <Sidebar />
-          <Main>
+    <>
+      <Photo />
+      <Container maxW='4xl' centerContent>
+        <DarkModeSwitch />
+        <Glass
+          mt={12}
+          boxShadow='10px 10px 50px rgba(0,0,0,0.2)'
+          overflowY='visible'>
+          <Box direction='column' spacing='1.5rem' p='1.5rem'>
+            <PrimaryText>Jeremy Moseley</PrimaryText>
+            <Text py='1rem' fontSize='xl'>
+              Full stack developer focused on building React apps
+            </Text>
+            <PrimaryButtons />
             <Breadcrumb />
-            {children}
+            <Box {...props} />
             <Footer />
-          </Main>
-        </Flex>
-      </Glass>
-    </Background>
+          </Box>
+        </Glass>
+      </Container>
+    </>
   )
 }
-
-export default UI

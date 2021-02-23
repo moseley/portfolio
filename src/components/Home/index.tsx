@@ -1,14 +1,13 @@
-import Projects from './Projects'
+import { Box } from '@chakra-ui/react'
 import Skills from './Skills'
-import CodeSnippets from './CodeSnippets'
+// import Projects from '../Projects'
 
 const Home = () => {
   return (
-    <>
+    <Box>
       <Skills />
-      <Projects />
-      <CodeSnippets />
-    </>
+      {/* <Projects /> */}
+    </Box>
   )
 }
 
