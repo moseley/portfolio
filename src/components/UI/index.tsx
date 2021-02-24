@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { Box, BoxProps, Container } from '@chakra-ui/react'
 import { DarkModeSwitch } from './Elements'
-import { Glass, Photo } from './Background'
+import Background, { Glass } from './Background'
 import { Header, Footer } from './Sections'
 
 export const UI = (props: BoxProps) => {
   return (
     <>
-      <Photo />
+      <Background />
       <Container maxW='4xl' centerContent>
         <DarkModeSwitch />
         <Glass
