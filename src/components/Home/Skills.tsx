@@ -127,7 +127,7 @@ const Design = () => {
 
 const Tools = () => {
   const items: ItemProps[] = [
-    { id: 'MacOS, iOS', icon: <SiApple /> },
+    { id: 'macOS, iOS', icon: <SiApple /> },
     { id: 'Windows', icon: <SiWindows /> },
     { id: 'Linux', icon: <SiLinux /> },
     { id: 'Visual Studio Code', icon: <SiVisualstudiocode /> },
