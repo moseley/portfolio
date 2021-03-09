@@ -1,7 +1,10 @@
-import { Box, Link, Button } from '@chakra-ui/react'
+import { Box, Link, Button, useColorMode } from '@chakra-ui/react'
 import { SiGithub, SiLinkedin, SiAdobeacrobatreader } from 'react-icons/si'
 
 export const PrimaryButtons = () => {
+  const { colorMode } = useColorMode()
+  const isDark = colorMode === 'dark'
+
   return (
     <Box d='flex' spacing='0.5rem' flexWrap='nowrap' justifyContent='center'>
       <Box p={2}>
@@ -10,7 +13,11 @@ export const PrimaryButtons = () => {
           href='https://github.com/moseley'
           title='Visit GitHub Profile'
           isExternal>
-          <Button size='sm' leftIcon={<SiGithub color='black' size='1em' />}>
+          <Button
+            size='sm'
+            leftIcon={
+              <SiGithub color={isDark ? 'white' : 'black'} size='1em' />
+            }>
             GitHub
           </Button>
         </Link>

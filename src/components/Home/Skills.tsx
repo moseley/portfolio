@@ -145,14 +145,14 @@ const Skills = () => {
   const brief = true
   return (
     <>
-      <Glass my={2}>
+      <Glass my={2} pb={2}>
         <Heading fontSize='2xl' py={2}>
           Skills, frameworks, tools&hellip;
         </Heading>
         <Languages />
         <Frameworks />
-        <Deployment />
         <Design />
+        <Deployment />
         {!brief && <Tools />}
       </Glass>
     </>

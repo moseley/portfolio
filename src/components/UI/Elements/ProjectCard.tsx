@@ -1,4 +1,12 @@
-import { Heading, Text, Box, Button, Link, Image } from '@chakra-ui/react'
+import {
+  Heading,
+  Text,
+  Box,
+  Button,
+  Link,
+  Image,
+  useColorMode
+} from '@chakra-ui/react'
 import { SiGithub } from 'react-icons/si'
 import { Glass } from '@components/UI/Background/Glass'
 import { BiLinkExternal } from 'react-icons/bi'
@@ -18,6 +26,9 @@ export const ProjectCard = ({
   url,
   src
 }: ProjectProps) => {
+  const { colorMode } = useColorMode()
+  const isDark = colorMode === 'dark'
+
   return (
     <Glass p='1rem'>
       {img && (
@@ -37,7 +48,12 @@ export const ProjectCard = ({
             <Link href={url} isExternal>
               <Button
                 size='sm'
-                leftIcon={<BiLinkExternal color='black' size='1em' />}>
+                leftIcon={
+                  <BiLinkExternal
+                    color={isDark ? 'white' : 'black'}
+                    size='1em'
+                  />
+                }>
                 Visit
               </Button>
             </Link>
@@ -45,7 +61,11 @@ export const ProjectCard = ({
         )}
         <Box p={2}>
           <Link href={src} isExternal>
-            <Button size='sm' leftIcon={<SiGithub color='black' size='1em' />}>
+            <Button
+              size='sm'
+              leftIcon={
+                <SiGithub color={isDark ? 'white' : 'black'} size='1em' />
+              }>
               Source Code
             </Button>
           </Link>
