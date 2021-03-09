@@ -50,6 +50,9 @@ export const ProjectCard = ({
             <Image
               src={sourceImage}
               srcSet={sourceSet}
+              sizes='(min-width: 800px) 50vw, 100vw'
+              htmlWidth={1380}
+              htmlHeight={500}
               alt={title}
               borderTopRadius='xl'
             />
