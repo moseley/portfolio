@@ -142,9 +142,10 @@ const Tools = () => {
 }
 
 const Skills = () => {
+  const brief = true
   return (
     <>
-      <Glass mt={2}>
+      <Glass my={2}>
         <Heading fontSize='2xl' py={2}>
           Skills, frameworks, tools&hellip;
         </Heading>
@@ -152,7 +153,7 @@ const Skills = () => {
         <Frameworks />
         <Deployment />
         <Design />
-        <Tools />
+        {!brief && <Tools />}
       </Glass>
     </>
   )

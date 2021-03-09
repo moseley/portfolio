@@ -1,27 +1,14 @@
 import { Heading, Stack } from '@chakra-ui/react'
-import { ProjectCard } from '@components/UI/Elements/ProjectCard'
+import { ProjectCard, ProjectProps } from '@components/UI/Elements/ProjectCard'
 
-const projects = [
+const projects: ProjectProps[] = [
   {
-    title: 'Cryptocurrency Blockchain Simplified',
-    summary: 'Learn how blockchains work! A quick example with JS',
-    route: '/',
-    img: '',
-    src: '#'
-  },
-  {
-    title: 'NFL Tournament Bracket',
-    summary: 'Having fun with flexbox layouts.',
-    route: '/projects/bracket',
-    img: '',
-    src: '#'
-  },
-  {
-    title: 'Monte Hall Game Theory',
-    summary: 'Learn the math behind the gameshow.',
-    route: '/projects/monte-hall',
-    img: '',
-    src: '#'
+    title: 'Flexbox Brackets',
+    summary:
+      'A fun use of flexbox to display columns of games. Built using React, Material UI, and Redux. Written in TypeScript.',
+    img: 'bracket.jpg',
+    url: 'https://bracket-challenge.netlify.com',
+    src: 'https://github.com/moseley/bracket'
   }
 ]
 
@@ -29,11 +16,11 @@ const Projects = () => {
   return (
     <>
       <Heading fontSize='2xl' mt='2rem'>
-        Project Samples
+        Project Showcase
       </Heading>
       <Stack columns={3} spacing='1.5rem' py='2rem'>
         {projects.map((project) => (
-          <ProjectCard key={project.route} {...project} />
+          <ProjectCard key={project.title} {...project} />
         ))}
       </Stack>
     </>

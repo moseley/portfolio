@@ -1,42 +1,55 @@
-import { Heading, Text, Box, Button } from '@chakra-ui/react'
+import { Heading, Text, Box, Button, Link, Image } from '@chakra-ui/react'
 import { SiGithub } from 'react-icons/si'
 import { Glass } from '@components/UI/Background/Glass'
-import NextLink from 'next/link'
+import { BiLinkExternal } from 'react-icons/bi'
 
-interface ProjectProps {
+export interface ProjectProps {
   title: string
   summary: string
-  route: string
   img?: string
-  src?: string
+  url: string
+  src: string
 }
 
-export const ProjectCard = ({ title, summary, route, src }: ProjectProps) => {
+export const ProjectCard = ({
+  title,
+  summary,
+  img,
+  url,
+  src
+}: ProjectProps) => {
   return (
     <Glass p='1rem'>
+      {img && (
+        <Box mb={4}>
+          <Link href={url} isExternal>
+            <Image src={`/projects/${img}`} alt={title} borderTopRadius='xl' />
+          </Link>
+        </Box>
+      )}
       <Heading fontSize='lg'>{title}</Heading>
       <Text fontSize='sm' py='1rem'>
         {summary}
       </Text>
       <Box d='flex' spacing='0.5rem' flexWrap='nowrap' justifyContent='center'>
-        {route && (
+        {url && (
           <Box p={2}>
-            <NextLink href={route}>
-              <Button size='sm'>View</Button>
-            </NextLink>
-          </Box>
-        )}
-        {src && (
-          <Box p={2}>
-            <NextLink href={src}>
+            <Link href={url} isExternal>
               <Button
                 size='sm'
-                leftIcon={<SiGithub color='black' size='1em' />}>
-                Source Code
+                leftIcon={<BiLinkExternal color='black' size='1em' />}>
+                Visit
               </Button>
-            </NextLink>
+            </Link>
           </Box>
         )}
+        <Box p={2}>
+          <Link href={src} isExternal>
+            <Button size='sm' leftIcon={<SiGithub color='black' size='1em' />}>
+              Source Code
+            </Button>
+          </Link>
+        </Box>
       </Box>
     </Glass>
   )

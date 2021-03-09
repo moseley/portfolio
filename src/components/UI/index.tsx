@@ -11,7 +11,7 @@ export const UI = (props: BoxProps) => {
       <Container maxW='4xl' centerContent>
         <DarkModeSwitch />
         <Glass
-          mt={12}
+          my={12}
           boxShadow='10px 10px 50px rgba(0,0,0,0.2)'
           overflowY='visible'>
           <Box direction='column' spacing='1.5rem' p='1.5rem'>
