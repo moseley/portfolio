@@ -1,15 +1,35 @@
 import * as React from 'react'
-import { Fade, Box, useColorMode } from '@chakra-ui/react'
+import { Fade, Box, useColorMode, useMediaQuery } from '@chakra-ui/react'
 
 export const Image = () => {
+  const [isM] = useMediaQuery('(min-width: 375px)')
+  const [isL] = useMediaQuery('(min-width: 750px)')
+  const [isXL] = useMediaQuery('(min-width: 1280px)')
   const { colorMode } = useColorMode()
   const isDark = colorMode === 'dark'
+  const [bgImage, setBgImage] = React.useState<string>(
+    '/golden-gate/golden-gate-1x.jpg'
+  )
+  const [height, setHeight] = React.useState<number>(1000)
+
+  React.useEffect(() => {
+    if (isXL) {
+      setBgImage('/golden-gate/golden-gate-4x.jpg')
+      setHeight(4000)
+    } else if (isL) {
+      setBgImage('/golden-gate/golden-gate-3x.jpg')
+      setHeight(3000)
+    } else if (isM) {
+      setBgImage('/golden-gate/golden-gate-2x.jpg')
+      setHeight(2000)
+    }
+  }, [isM, isL, isXL])
 
   return (
     <Fade in={true}>
       <Box
         width='100vw'
-        height='100vh'
+        height={`${height}px`}
         // bg={
         //   'url(/golden-gate/golden-gate-4x.jpg) no-repeat center center fixed'
         // }
@@ -22,7 +42,8 @@ export const Image = () => {
         zIndex={1}
         _before={{
           content: `''`,
-          backgroundImage: "url('/golden-gate/golden-gate-4x.jpg')",
+          backgroundImage: `url('${bgImage}')`,
+          backgroundPosition: 'center center',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
           backgroundAttachment: 'fixed',
@@ -31,7 +52,7 @@ export const Image = () => {
           right: '0px',
           bottom: '0px',
           left: '0px',
-          opacity: isDark ? '0.15' : '1'
+          opacity: isDark ? '0.45' : '1'
         }}
       />
     </Fade>
