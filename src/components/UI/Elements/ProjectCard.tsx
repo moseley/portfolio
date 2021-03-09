@@ -1,3 +1,4 @@
+import * as React from 'react'
 import {
   Heading,
   Text,
@@ -28,13 +29,30 @@ export const ProjectCard = ({
 }: ProjectProps) => {
   const { colorMode } = useColorMode()
   const isDark = colorMode === 'dark'
+  const [sourceImage, setSourceImage] = React.useState<string | undefined>()
+  const [sourceSet, setSourceSet] = React.useState<string | undefined>()
+
+  React.useEffect(() => {
+    if (img) {
+      const [imgName, ext] = img.split('.')
+      setSourceImage(`projects/${imgName}-1x.${ext}`)
+      setSourceSet(
+        `projects/${imgName}-1x.${ext} 345w, projects/${imgName}-2x.${ext} 690w, projects/${imgName}-3x.${ext} 1035w, projects/${imgName}-4x.${ext} 1380w`
+      )
+    }
+  }, [img])
 
   return (
     <Glass p='1rem'>
       {img && (
         <Box mb={4}>
           <Link href={url} isExternal>
-            <Image src={`/projects/${img}`} alt={title} borderTopRadius='xl' />
+            <Image
+              src={sourceImage}
+              srcSet={sourceSet}
+              alt={title}
+              borderTopRadius='xl'
+            />
           </Link>
         </Box>
       )}

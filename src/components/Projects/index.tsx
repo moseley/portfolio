@@ -6,7 +6,7 @@ const projects: ProjectProps[] = [
     title: 'Flexbox Brackets',
     summary:
       'A fun use of flexbox to display columns of games. Built using React, Material UI, and Redux. Written in TypeScript.',
-    img: 'bracket.jpg',
+    img: 'bracket/bracket.jpg',
     url: 'https://bracket-challenge.netlify.com',
     src: 'https://github.com/moseley/bracket'
   }
