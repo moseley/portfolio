@@ -56,6 +56,23 @@ const skills = [
   },
 ];
 
+type Cert = { slug: string; title: string; verifyUrl?: string };
+
+const certs: Cert[] = [
+  // verifyUrl: paste the official Anthropic Academy verification URL per cert.
+  // Falls back to the cert image if omitted.
+  { slug: "ai-fluency-framework-and-foundations", title: "AI Fluency: Framework & Foundations", verifyUrl: "https://verify.skilljar.com/c/6ak8iag44jmd" },
+  { slug: "ai-capabilities-and-limitations", title: "AI Capabilities & Limitations", verifyUrl: "https://verify.skilljar.com/c/rzvsbaeh6d4q" },
+  { slug: "claude-101", title: "Claude 101", verifyUrl: "https://verify.skilljar.com/c/hzjz866u7db9" },
+  { slug: "claude-code-101", title: "Claude Code 101", verifyUrl: "https://verify.skilljar.com/c/dkv9rm6e2vqj" },
+  { slug: "claude-code-in-action", title: "Claude Code in Action", verifyUrl: "https://verify.skilljar.com/c/6oe2y9hq4fyh" },
+  { slug: "introduction-to-agent-skills", title: "Introduction to Agent Skills", verifyUrl: "https://verify.skilljar.com/c/paf8yzdf8sda" },
+  { slug: "introduction-to-subagents", title: "Introduction to Subagents", verifyUrl: "https://verify.skilljar.com/c/or3qxnimyjp7" },
+  { slug: "introduction-to-claude-cowork", title: "Introduction to Claude Cowork", verifyUrl: "https://verify.skilljar.com/c/fiysgzukztbq" },
+  { slug: "introduction-to-model-context-protocol", title: "Introduction to Model Context Protocol", verifyUrl: "https://verify.skilljar.com/c/o8fwe7aipqbm" },
+  { slug: "model-context-protocol-advanced-topics", title: "MCP: Advanced Topics", verifyUrl: "https://verify.skilljar.com/c/7g7d5itc4hqs" },
+];
+
 function ScrambleText({ text }: { text: string }) {
   const [display, setDisplay] = useState(text);
   const ranRef = useRef(false);
@@ -266,6 +283,22 @@ function NowWidget() {
 }
 
 export default function Home() {
+  const [activeCert, setActiveCert] = useState<Cert | null>(null);
+
+  useEffect(() => {
+    if (!activeCert) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setActiveCert(null);
+    };
+    document.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [activeCert]);
+
   return (
     <div className="min-h-screen relative overflow-hidden text-white">
       {/* Background — gradient + grain */}
@@ -498,6 +531,57 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Certifications */}
+      <section className="px-6 py-24 border-t border-white/10">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-baseline justify-between flex-wrap gap-4 mb-3">
+            <div className="text-xs font-mono uppercase tracking-[0.3em] opacity-50">
+              // credentials
+            </div>
+            <a
+              href="https://www.anthropic.com/learn"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-mono opacity-50 hover:opacity-100 transition-opacity"
+            >
+              anthropic academy ↗
+            </a>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-12">
+            Anthropic Academy.
+          </h2>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {certs.map((c) => (
+              <button
+                key={c.slug}
+                type="button"
+                onClick={() => setActiveCert(c)}
+                className="group text-left rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur-sm overflow-hidden hover:bg-white/[0.07] hover:border-white/25 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden bg-black/30">
+                  <Image
+                    src={`/certs/anthropic/${c.slug}.jpg`}
+                    alt={c.title}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 20vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                </div>
+                <div className="p-3">
+                  <div className="text-[10px] font-mono uppercase tracking-wider opacity-50 mb-1">
+                    Certificate
+                  </div>
+                  <div className="text-sm font-medium leading-snug">
+                    {c.title}
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="px-6 py-32 border-t border-white/10">
         <div className="max-w-7xl mx-auto text-center">
@@ -558,6 +642,95 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Cert lightbox */}
+      {activeCert && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={activeCert.title}
+          onClick={() => setActiveCert(null)}
+          className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-in fade-in duration-150"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-4xl flex flex-col"
+          >
+            {/* Top bar */}
+            <div className="flex items-start justify-between gap-4 mb-4">
+              <div>
+                <div className="text-[10px] font-mono uppercase tracking-[0.25em] opacity-60 mb-1">
+                  Anthropic Academy · Certificate
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold leading-tight">
+                  {activeCert.title}
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setActiveCert(null)}
+                aria-label="Close"
+                className="shrink-0 h-9 w-9 rounded-full border border-white/20 bg-white/5 hover:bg-white/15 transition-colors flex items-center justify-center"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Image */}
+            <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden border border-white/10 bg-black/40">
+              <Image
+                src={`/certs/anthropic/${activeCert.slug}.jpg`}
+                alt={activeCert.title}
+                fill
+                sizes="(max-width: 1024px) 100vw, 1024px"
+                className="object-contain"
+                priority
+              />
+            </div>
+
+            {/* Verify */}
+            <div className="mt-4 flex justify-end">
+              <a
+                href={
+                  activeCert.verifyUrl ??
+                  `/certs/anthropic/${activeCert.slug}.jpg`
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border border-white/20 bg-white/5 hover:bg-white/15 transition-colors"
+              >
+                Verify
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M14 3h7v7" />
+                  <path d="M10 14L21 3" />
+                  <path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
