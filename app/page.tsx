@@ -40,20 +40,26 @@ const projects = [
   },
 ];
 
-const skills = [
-  {
-    heading: "Languages & Frameworks",
-    items: ["JavaScript", "TypeScript", "React", "Next.js", "Node.js", "PHP"],
-  },
-  { heading: "Databases", items: ["MongoDB", "MySQL", "PostgreSQL", "Neon"] },
-  {
-    heading: "Cloud & Infrastructure",
-    items: ["AWS EC2", "ELB", "RDS", "S3", "Lambda", "Vercel"],
-  },
-  {
-    heading: "APIs & Services",
-    items: ["Stripe", "Mux", "ElevenLabs", "OpenAI", "GraphQL"],
-  },
+type Tool = { name: string; icon?: string };
+
+// Icons resolved via the Iconify API. `icon` format: "<set>:<slug>".
+// Leave undefined to fall back to a monogram tile.
+const tools: Tool[] = [
+  { name: "TypeScript", icon: "simple-icons:typescript" },
+  { name: "JavaScript", icon: "simple-icons:javascript" },
+  { name: "React", icon: "simple-icons:react" },
+  { name: "Next.js", icon: "simple-icons:nextdotjs" },
+  { name: "Node.js", icon: "simple-icons:nodedotjs" },
+  { name: "GraphQL", icon: "simple-icons:graphql" },
+  { name: "SQL", icon: "carbon:sql" },
+  { name: "AWS", icon: "simple-icons:amazonwebservices" },
+  { name: "Vercel", icon: "simple-icons:vercel" },
+  { name: "Stripe", icon: "simple-icons:stripe" },
+  { name: "ElevenLabs", icon: "simple-icons:elevenlabs" },
+  { name: "ChatGPT", icon: "simple-icons:openai" },
+  { name: "Claude", icon: "simple-icons:claude" },
+  { name: "OpenClaw", icon: "/icons/openclaw.svg" },
+  { name: "Hermes", icon: "/icons/hermes.png" },
 ];
 
 type Cert = { slug: string; title: string; verifyUrl?: string };
@@ -437,29 +443,38 @@ export default function Home() {
           <div className="text-xs font-mono uppercase tracking-[0.3em] opacity-50 mb-3">
             // toolkit
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-10">
             Things I reach for.
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {skills.map((s) => (
-              <div
-                key={s.heading}
-                className="rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm p-6 hover:bg-white/[0.06] hover:border-white/20 transition-colors"
-              >
-                <div className="text-xs font-mono uppercase tracking-wider opacity-60 mb-4">
-                  {s.heading}
+          <div className="flex flex-wrap gap-3">
+            {tools.map((t) => (
+              <div key={t.name} className="group relative">
+                <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-xl border border-white/10 bg-white/[0.04] backdrop-blur-sm flex items-center justify-center hover:bg-white/[0.1] hover:border-white/25 transition-colors">
+                  {t.icon ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={
+                        t.icon.startsWith("/") || t.icon.startsWith("http")
+                          ? t.icon
+                          : `https://api.iconify.design/${t.icon}.svg?color=%23ffffff`
+                      }
+                      alt={t.name}
+                      width={22}
+                      height={22}
+                      className="opacity-80 group-hover:opacity-100 transition-opacity"
+                    />
+                  ) : (
+                    <span className="text-sm font-mono font-semibold opacity-80 group-hover:opacity-100 transition-opacity">
+                      {t.name.slice(0, 2)}
+                    </span>
+                  )}
                 </div>
-                <ul className="space-y-1.5">
-                  {s.items.map((item) => (
-                    <li
-                      key={item}
-                      className="text-base flex items-center gap-2"
-                    >
-                      <span className="text-emerald-400 opacity-60">→</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                <div
+                  role="tooltip"
+                  className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-2 whitespace-nowrap px-2 py-1 rounded-md text-xs font-mono bg-black/90 border border-white/15 opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                >
+                  {t.name}
+                </div>
               </div>
             ))}
           </div>
