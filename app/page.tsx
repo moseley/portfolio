@@ -274,8 +274,8 @@ function NowWidget() {
 const CARD_W = 210;
 const CARD_H = 294;
 // Landscape lightbox back dimensions
-const BACK_W = 600;
-const BACK_H = 360;
+const BACK_W = 820;
+const BACK_H = 480;
 
 function ProjectCard({
   project,
@@ -293,7 +293,7 @@ function ProjectCard({
         width: CARD_W,
         height: CARD_H,
         scrollSnapAlign: "start",
-        border: `5px solid ${project.color}55`,
+        border: "7px solid #ffffff",
       }}
     >
       {/* Thumbnail */}
@@ -316,12 +316,19 @@ function ProjectCard({
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
 
-      {/* Flip hint icon */}
-      <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-60 transition-opacity">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-          <path d="M3 3v5h5" />
-        </svg>
+      {/* Flip hint — appears on hover to signal the card is clickable */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+        <div className="flex flex-col items-center gap-2">
+          <div className="h-14 w-14 rounded-full bg-black/45 backdrop-blur-sm border border-white/40 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-180">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+              <path d="M3 3v5h5" />
+            </svg>
+          </div>
+          <span className="text-[10px] font-mono uppercase tracking-[0.2em] bg-black/45 backdrop-blur-sm rounded-full px-2.5 py-1">
+            Flip
+          </span>
+        </div>
       </div>
 
       {/* Title area */}
@@ -501,16 +508,32 @@ export default function Home() {
           </div>
           <div className="md:col-span-8">
             <p className="text-2xl leading-relaxed">
-              I lead teams, architect scalable systems, and own projects end-to-end. Two decades of
-              shipping has taught me one thing:{" "}
+              I&apos;m a full-stack engineer with 20+ years of building and shipping products across
+              web, mobile, and cloud — from early-stage startups to enterprise clients. I lead teams,
+              architect scalable systems, and{" "}
               <span
                 className="bg-clip-text text-transparent font-semibold"
                 style={{ backgroundImage: "linear-gradient(90deg, #1e5bd6, #2dd4bf)" }}
               >
-                taste compounds.
-              </span>{" "}
-              The fastest path to a great product is people who&apos;ve been wrong enough times to
-              know what works.
+                own projects end-to-end.
+              </span>
+            </p>
+            <p className="mt-6 text-lg leading-relaxed opacity-70">
+              I started in game QA at THQ — writing the Xbox Live network testing handbook and
+              hunting bugs across 20+ titles — then spent eight years as Director of Development at a
+              Pasadena agency, leading a team across 50+ client projects and building event platforms
+              for the likes of Shell and Maserati. Along the way I founded eTono, deploying scaling
+              AWS infrastructure and shipping everything from PCI-compliant commerce to an Ethereum
+              voting contract.
+            </p>
+            <p className="mt-6 text-lg leading-relaxed opacity-70">
+              Today I&apos;m lead engineer on an AI-driven firefighter training simulator built in
+              Next.js and TypeScript — weaving together real-time speech, generative responses, and
+              video into one product. I&apos;m most at home where{" "}
+              <span className="font-semibold text-white/90">
+                deep experience meets brand-new tools
+              </span>
+              , turning ambitious roadmaps into things that actually ship.
             </p>
           </div>
         </div>
@@ -695,18 +718,6 @@ export default function Home() {
           className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md flex items-center justify-center p-4"
           style={{ animation: "fadeIn 150ms ease-out" }}
         >
-          {/* Close */}
-          <button
-            type="button"
-            onClick={closeProject}
-            aria-label="Close"
-            className="absolute top-5 right-5 h-9 w-9 rounded-full border border-white/20 bg-white/5 hover:bg-white/15 transition-colors flex items-center justify-center z-10"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M18 6L6 18M6 6l12 12" />
-            </svg>
-          </button>
-
           {/* Flip card container */}
           <div onClick={(e) => e.stopPropagation()} style={{ perspective: "1400px" }}>
             {/* Size-transitioning wrapper */}
@@ -732,7 +743,7 @@ export default function Home() {
                 <div
                   style={{
                     backfaceVisibility: "hidden",
-                    border: `5px solid ${activeProject.color}55`,
+                    border: "7px solid #ffffff",
                   }}
                   className="absolute inset-0 rounded-2xl overflow-hidden"
                 >
@@ -769,10 +780,21 @@ export default function Home() {
                   style={{
                     backfaceVisibility: "hidden",
                     transform: "rotateY(180deg)",
-                    border: `5px solid ${activeProject.color}55`,
+                    border: "7px solid #ffffff",
                   }}
                   className="absolute inset-0 rounded-2xl overflow-hidden bg-[#06192e]"
                 >
+                  {/* Close — inside the card's top-right corner */}
+                  <button
+                    type="button"
+                    onClick={(e) => { e.stopPropagation(); closeProject(); }}
+                    aria-label="Close"
+                    className="absolute top-3 right-3 z-20 h-8 w-8 rounded-full border border-white/25 bg-black/40 backdrop-blur-sm hover:bg-black/70 transition-colors flex items-center justify-center"
+                  >
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M18 6L6 18M6 6l12 12" />
+                    </svg>
+                  </button>
                   <div className="flex h-full">
                     {/* Left: slideshow */}
                     <div className="relative w-2/5 shrink-0 overflow-hidden">
@@ -841,40 +863,43 @@ export default function Home() {
                       )}
                     </div>
 
-                    {/* Right: details */}
-                    <div className="flex-1 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto">
-                      <div>
-                        <div className="flex items-center gap-3 mb-4">
-                          <span
-                            className="px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider"
-                            style={{ background: activeProject.color, color: "#04122a" }}
-                          >
-                            {activeProject.year}
-                          </span>
-                          <span className="text-[10px] font-mono uppercase tracking-wider opacity-50">
-                            {activeProject.role}
-                          </span>
+                    {/* Right: details — padding wraps a scroll area so the
+                        scrollbar sits inside the card's padding */}
+                    <div className="flex-1 min-h-0 p-6 sm:p-8 flex flex-col">
+                      <div className="flex-1 min-h-0 overflow-y-auto pr-3 flex flex-col justify-between [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-white/25 hover:[&::-webkit-scrollbar-thumb]:bg-white/40">
+                        <div>
+                          <div className="flex items-center gap-3 mb-4">
+                            <span
+                              className="px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider"
+                              style={{ background: activeProject.color, color: "#04122a" }}
+                            >
+                              {activeProject.year}
+                            </span>
+                            <span className="text-[10px] font-mono uppercase tracking-wider opacity-50">
+                              {activeProject.role}
+                            </span>
+                          </div>
+                          <h3 className="text-2xl sm:text-3xl font-bold mb-2 leading-tight">
+                            {activeProject.title}
+                          </h3>
+                          <div className="text-xs font-mono uppercase tracking-wider opacity-50 mb-4">
+                            {activeProject.category}
+                          </div>
+                          <p className="text-sm sm:text-base opacity-75 leading-relaxed">
+                            {activeProject.description}
+                          </p>
                         </div>
-                        <h3 className="text-2xl sm:text-3xl font-bold mb-2 leading-tight">
-                          {activeProject.title}
-                        </h3>
-                        <div className="text-xs font-mono uppercase tracking-wider opacity-50 mb-4">
-                          {activeProject.category}
-                        </div>
-                        <p className="text-sm sm:text-base opacity-75 leading-relaxed">
-                          {activeProject.description}
-                        </p>
-                      </div>
 
-                      <div className="flex flex-wrap gap-1.5 mt-5">
-                        {activeProject.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-2.5 py-1 rounded-full text-[10px] font-mono border border-white/15 bg-white/5"
-                          >
-                            {tag}
-                          </span>
-                        ))}
+                        <div className="flex flex-wrap gap-1.5 mt-5">
+                          {activeProject.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="px-2.5 py-1 rounded-full text-[10px] font-mono border border-white/15 bg-white/5"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
