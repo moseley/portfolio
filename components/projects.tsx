@@ -503,7 +503,7 @@ export default function Projects() {
                           {(activeProject.partners?.length ?? 0) > 0 && (
                             <>
                               <dt className="opacity-40 uppercase tracking-wider pt-0.5">Partners</dt>
-                              <dd className="text-base">{activeProject.partners.join(", ")}</dd>
+                              <dd className="text-base">{activeProject.partners!.join(", ")}</dd>
                             </>
                           )}
 
