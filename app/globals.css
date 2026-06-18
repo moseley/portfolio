@@ -3,6 +3,37 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Daytime defaults (SSR-safe; overridden by Theme component on client) */
+  --bg: #bdb5a8;
+  --surface: #b0a89b;
+  --surface-tag: #c8c0b3;
+  --surface-hover: #a89e91;
+  --border: #9e968a;
+  --border-strong: #8a8278;
+  --text: #2c1810;
+  --text-emphasis: #1c0f08;
+  --muted: rgba(44, 24, 16, 0.5);
+  --accent-1: #506111;
+  --accent-2: #bda34c;
+  --accent-3: #1a210d;
+  --cta-1: #506111;
+  --cta-2: #bda34c;
+  --link-deco: #8a8278;
+  --gradient-hero: linear-gradient(90deg, #506111, #bda34c, #334400);
+  --gradient-accent: linear-gradient(90deg, #506111, #bda34c);
+  --header-bg: rgba(189, 181, 168, 0.9);
+  --tooltip-bg: #171717;
+  --tooltip-border: #404040;
+  --page-bg: #bdb5a8;
+  --edge-fade: #bdb5a8;
+  --btn-primary-bg: #171717;
+  --btn-primary-text: #ffffff;
+  --btn-primary-border: #8a8278;
+  --resume-border: #8a8278;
+  --resume-border-hover: #6a6258;
+  --logo-filter: brightness(0) saturate(0);
+  --logo-opacity: 0.75;
 }
 
 @theme inline {
@@ -10,13 +41,6 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
@@ -28,4 +52,46 @@ body {
 code,
 pre {
   font-family: var(--font-roboto-mono), monospace;
+}
+
+h1,
+h2,
+h3 {
+  text-shadow:
+    -1px -1px 0 rgba(255, 255, 255, 0.6),
+    1px 1px 0 rgba(0, 0, 0, 0.6);
+}
+
+/* HPU logo: white on transparent — filter/opacity controlled by theme */
+.hpu-logo {
+  filter: var(--logo-filter);
+  opacity: var(--logo-opacity);
+  transition: filter 0.7s, opacity 0.7s;
+}
+
+@keyframes filmGrain {
+  0% {
+    background-position: 0px 0px;
+  }
+  12.5% {
+    background-position: -30px -15px;
+  }
+  25% {
+    background-position: 10px -40px;
+  }
+  37.5% {
+    background-position: -25px 20px;
+  }
+  50% {
+    background-position: 15px 35px;
+  }
+  62.5% {
+    background-position: -40px -5px;
+  }
+  75% {
+    background-position: 25px -30px;
+  }
+  87.5% {
+    background-position: -10px 40px;
+  }
 }
