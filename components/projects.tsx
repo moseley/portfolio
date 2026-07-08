@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useEffectEvent, useRef, useState } from "react";
 import SectionLabel from "@/components/section-label";
 
 const projects = [
@@ -18,7 +18,12 @@ const projects = [
     images: ["/projects/shell/eco-marathon.png"],
     description:
       "Shell Eco-marathon is a global competition where high school and university teams engineer the most fuel-efficient vehicles, staged across regional events in the Americas, Europe, and Asia. In partnership with Publicis, I built the web app at the center of the competition experience—powering team submissions of technical documents, logistics, lodging, race results, and social event coverage. Each team received a shareable profile link bringing their info, race results, prizes, category, and video profile together in one place. I also provided on-site support across the 2009 and 2010 Americas and Europe events in the U.S. and Germany.",
-    tags: ["Web App Development", "Event Platform", "Sustainability", "On-site Support"],
+    tags: [
+      "Web App Development",
+      "Event Platform",
+      "Sustainability",
+      "On-site Support",
+    ],
   },
   {
     id: 2,
@@ -37,7 +42,12 @@ const projects = [
     ],
     description:
       "Maserati ran a series of custom event campaigns to engage owners and prospects—test-drive invitations, race weekends, and new-vehicle unveilings. Working with Ross Madrid, I built each campaign end to end, keeping a cohesive theme across print, email, and web while tailoring every one to its own creative direction and registration data requirements. The work spanned experiences like the Aspen Winter Drive, the Trofeo Maserati North America race series, and the year-end Winter Revel—each with a distinct look and a registration flow built to capture the specific attendee details that event called for.",
-    tags: ["Email Development", "Landing Pages", "Event Registration", "Print-to-Digital"],
+    tags: [
+      "Email Development",
+      "Landing Pages",
+      "Event Registration",
+      "Print-to-Digital",
+    ],
   },
   {
     id: 3,
@@ -51,7 +61,12 @@ const projects = [
     images: ["/projects/comtac/training.png"],
     description:
       "Comtac's firefighter training app is a voice-driven simulation built on a real-time speech and media pipeline. I developed the web app, which captures the trainee's microphone audio and transcribes it with ElevenLabs, sends the transcribed commands to the OpenAI API to generate context-appropriate responses, then synthesizes dispatcher and arriving-unit speech back through ElevenLabs. Voice recordings are stored on Amazon S3, and all incident video—including the 360-degree structure walkthroughs—is hosted and streamed through Mux. Session data, including the self-evaluation and final score, is captured and saved for review.",
-    tags: ["Web App Development", "Simulation", "Voice Interaction", "E-Learning"],
+    tags: [
+      "Web App Development",
+      "Simulation",
+      "Voice Interaction",
+      "E-Learning",
+    ],
   },
   {
     id: 4,
@@ -66,7 +81,12 @@ const projects = [
     images: ["/projects/beechcraft/journey.png"],
     description:
       "Journey is a content hub for Beechcraft that archives the company's press releases, technical documents, videos, highlight reels, employee spotlights, customer success stories, and recent campaigns in one place. I built the website, where every piece of content is tagged by intended audience and a recommendation algorithm surfaces the articles and media each visitor is most likely to engage with based on their profile. Content is presented in a dynamic grid, with size and spacing allocated to each item according to its type and prominence.",
-    tags: ["Web Development", "Content Platform", "Personalization", "Dynamic Grid Layout"],
+    tags: [
+      "Web Development",
+      "Content Platform",
+      "Personalization",
+      "Dynamic Grid Layout",
+    ],
   },
 ];
 
@@ -89,7 +109,7 @@ type Project = {
 const RATIO_W = 63;
 const RATIO_H = 88;
 const CARD_W = 210;
-const CARD_H = Math.round(CARD_W * RATIO_H / RATIO_W); // 293
+const CARD_H = Math.round((CARD_W * RATIO_H) / RATIO_W); // 293
 
 function ProjectCard({
   project,
@@ -118,7 +138,9 @@ function ProjectCard({
       {/* Thumbnail */}
       <div
         className="absolute inset-0"
-        style={{ background: `linear-gradient(135deg, ${project.color}44, ${project.color}11)` }}
+        style={{
+          background: `linear-gradient(135deg, ${project.color}44, ${project.color}11)`,
+        }}
       >
         <Image
           src={project.thumbnail}
@@ -133,14 +155,18 @@ function ProjectCard({
       </div>
 
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent" />
 
       {/* Bent page corner — top right, appears on hover */}
-      <div className="absolute top-0 right-0 pointer-events-none" style={{ transform: "rotate(180deg)" }}>
+      <div
+        className="absolute top-0 right-0 pointer-events-none"
+        style={{ transform: "rotate(180deg)" }}
+      >
         <div
           className="absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{
-            width: 0, height: 0,
+            width: 0,
+            height: 0,
             borderStyle: "solid",
             borderWidth: "0 40px 40px 0",
             borderColor: "transparent rgba(0,0,0,0.35) transparent transparent",
@@ -149,10 +175,12 @@ function ProjectCard({
         <div
           className="absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 origin-top-right"
           style={{
-            width: 0, height: 0,
+            width: 0,
+            height: 0,
             borderStyle: "solid",
             borderWidth: "36px 36px 0 0",
-            borderColor: "rgba(255,255,255,0.85) transparent transparent transparent",
+            borderColor:
+              "rgba(255,255,255,0.85) transparent transparent transparent",
           }}
         />
       </div>
@@ -181,43 +209,80 @@ export default function Projects() {
     const el = scrollRef.current;
     if (!el) return;
     const check = () => {
-      if (arrowLeftRef.current)  arrowLeftRef.current.style.display  = el.scrollLeft > 1 ? "flex" : "none";
-      if (arrowRightRef.current) arrowRightRef.current.style.display = el.scrollLeft + el.clientWidth < el.scrollWidth - 1 ? "flex" : "none";
+      if (arrowLeftRef.current)
+        arrowLeftRef.current.style.display =
+          el.scrollLeft > 1 ? "flex" : "none";
+      if (arrowRightRef.current)
+        arrowRightRef.current.style.display =
+          el.scrollLeft + el.clientWidth < el.scrollWidth - 1 ? "flex" : "none";
     };
     check();
     requestAnimationFrame(check);
     el.addEventListener("scroll", check, { passive: true });
     window.addEventListener("resize", check);
-    return () => { el.removeEventListener("scroll", check); window.removeEventListener("resize", check); };
+    return () => {
+      el.removeEventListener("scroll", check);
+      window.removeEventListener("resize", check);
+    };
   }, []);
 
-  function scrollLeft()  { scrollRef.current?.scrollBy({ left: -scrollRef.current.clientWidth, behavior: "smooth" }); }
-  function scrollRight() { scrollRef.current?.scrollBy({ left:  scrollRef.current.clientWidth, behavior: "smooth" }); }
+  function scrollLeft() {
+    scrollRef.current?.scrollBy({
+      left: -scrollRef.current.clientWidth,
+      behavior: "smooth",
+    });
+  }
+  function scrollRight() {
+    scrollRef.current?.scrollBy({
+      left: scrollRef.current.clientWidth,
+      behavior: "smooth",
+    });
+  }
+
+  const handleOrientation = useEffectEvent((matches: boolean) => {
+    setIsPortrait(matches);
+  });
 
   useEffect(() => {
     const mql = window.matchMedia("(orientation: portrait)");
-    setIsPortrait(mql.matches);
-    const onChange = (e: MediaQueryListEvent) => setIsPortrait(e.matches);
+    handleOrientation(mql.matches);
+    const onChange = (e: MediaQueryListEvent) => handleOrientation(e.matches);
     mql.addEventListener("change", onChange);
     return () => mql.removeEventListener("change", onChange);
   }, []);
 
-  const closeProject = () => { setActiveProject(null); setFlipped(false); setSlideIndex(0); };
+  const closeProject = () => {
+    setActiveProject(null);
+    setFlipped(false);
+    setSlideIndex(0);
+  };
 
   // Keyboard dismiss + scroll lock
   useEffect(() => {
     if (!activeProject) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closeProject(); };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeProject();
+    };
     document.addEventListener("keydown", onKey);
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = prevOverflow; };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
   }, [activeProject]);
 
   // Auto-flip to back face after a short pause
+  const flipSlide = useEffectEvent(() => {
+    setFlipped(false);
+    setSlideIndex(0);
+  });
+
   useEffect(() => {
-    if (!activeProject) { setFlipped(false); setSlideIndex(0); return; }
+    if (!activeProject) {
+      flipSlide();
+      return;
+    }
     const t = setTimeout(() => setFlipped(true), 320);
     return () => clearTimeout(t);
   }, [activeProject]);
@@ -234,66 +299,126 @@ export default function Projects() {
   return (
     <>
       {/* Print-only: project text from expanded view */}
-      <section className="print-only pt-8 pb-10 border-t border-[var(--border)]">
+      <section className="print-only pt-8 pb-10 border-t border-[--border]">
         <div className="max-w-7xl mx-auto px-6 mb-10">
           <SectionLabel className="mb-3">selected work</SectionLabel>
-          <h2 className="text-4xl md:text-6xl font-bold">Stuff I&apos;ve built.</h2>
+          <h2 className="text-4xl md:text-6xl font-bold">
+            Stuff I&apos;ve built.
+          </h2>
         </div>
         <div className="max-w-7xl mx-auto px-6 flex flex-col gap-12">
           {projects.map((p) => (
             <div key={p.id}>
-              <dl className="grid grid-cols-[auto_1fr] gap-x-5 gap-y-1 text-sm font-mono mb-3" style={{ breakInside: "avoid" }}>
-                <dt style={{ opacity: 0.4 }} className="uppercase tracking-wider">Client</dt>
+              <dl
+                className="grid grid-cols-[auto_1fr] gap-x-5 gap-y-1 text-sm font-mono mb-3"
+                style={{ breakInside: "avoid" }}
+              >
+                <dt
+                  style={{ opacity: 0.4 }}
+                  className="uppercase tracking-wider"
+                >
+                  Client
+                </dt>
                 <dd className="font-semibold text-base">{p.client}</dd>
-                <dt style={{ opacity: 0.4 }} className="uppercase tracking-wider">Project</dt>
+                <dt
+                  style={{ opacity: 0.4 }}
+                  className="uppercase tracking-wider"
+                >
+                  Project
+                </dt>
                 <dd className="text-base">{p.project}</dd>
                 {(p.partners?.length ?? 0) > 0 && (
                   <>
-                    <dt style={{ opacity: 0.4 }} className="uppercase tracking-wider">Partners</dt>
+                    <dt
+                      style={{ opacity: 0.4 }}
+                      className="uppercase tracking-wider"
+                    >
+                      Partners
+                    </dt>
                     <dd className="text-base">{p.partners!.join(", ")}</dd>
                   </>
                 )}
-                <dt style={{ opacity: 0.4 }} className="uppercase tracking-wider">Role</dt>
+                <dt
+                  style={{ opacity: 0.4 }}
+                  className="uppercase tracking-wider"
+                >
+                  Role
+                </dt>
                 <dd className="text-base">{p.role}</dd>
-                <dt style={{ opacity: 0.4 }} className="uppercase tracking-wider">Year</dt>
+                <dt
+                  style={{ opacity: 0.4 }}
+                  className="uppercase tracking-wider"
+                >
+                  Year
+                </dt>
                 <dd className="text-base">{p.year}</dd>
               </dl>
               <div className="flex flex-wrap gap-2 mb-3">
                 {p.tags.map((tag) => (
-                  <span key={tag} className="px-3 py-1 rounded-full text-xs font-mono border border-[var(--border)]">
+                  <span
+                    key={tag}
+                    className="px-3 py-1 rounded-full text-xs font-mono border border-[--border]"
+                  >
                     {tag}
                   </span>
                 ))}
               </div>
-              <p className="text-sm leading-relaxed" style={{ opacity: 0.75 }}>{p.description}</p>
+              <p className="text-sm leading-relaxed" style={{ opacity: 0.75 }}>
+                {p.description}
+              </p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Horizontal card slider */}
-      <section id="work" className="print-hide pt-8 pb-10 sm:py-24 border-t transition-colors duration-700 border-[var(--border)]">
+      <section
+        id="work"
+        className="print-hide pt-8 pb-10 sm:py-24 border-t transition-colors duration-700 border-[--border]"
+      >
         <div className="max-w-7xl mx-auto px-6 mb-10">
           <SectionLabel className="mb-3">selected work</SectionLabel>
-          <h2 className="text-4xl md:text-6xl font-bold">Stuff I&apos;ve built.</h2>
+          <h2 className="text-4xl md:text-6xl font-bold">
+            Stuff I&apos;ve built.
+          </h2>
         </div>
 
         <div className="relative">
           {/* Edge fades */}
-          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 z-10"
-            style={{ background: "linear-gradient(to right, var(--edge-fade), transparent)" }} />
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 z-10"
-            style={{ background: "linear-gradient(to left, var(--edge-fade), transparent)" }} />
+          <div
+            className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 z-10"
+            style={{
+              background:
+                "linear-gradient(to right, var(--edge-fade), transparent)",
+            }}
+          />
+          <div
+            className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 z-10"
+            style={{
+              background:
+                "linear-gradient(to left, var(--edge-fade), transparent)",
+            }}
+          />
 
           <button
             ref={arrowLeftRef}
             type="button"
             onClick={scrollLeft}
             aria-label="Scroll to previous cards"
-            className="absolute left-3 z-20 h-10 w-10 rounded-full border items-center justify-center shadow-md transition-colors border-[var(--border)] bg-[var(--surface)] hover:bg-[var(--surface-hover)]"
+            className="absolute left-3 z-20 h-10 w-10 rounded-full border items-center justify-center shadow-md transition-colors border-[--border] bg-[--surface] hover:bg-[--surface-hover]"
             style={{ top: `${CARD_H / 2 - 20}px`, display: "none" }}
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </button>
@@ -302,10 +427,20 @@ export default function Projects() {
             type="button"
             onClick={scrollRight}
             aria-label="Scroll to next cards"
-            className="absolute right-3 z-20 h-10 w-10 rounded-full border items-center justify-center shadow-md transition-colors border-[var(--border)] bg-[var(--surface)] hover:bg-[var(--surface-hover)]"
+            className="absolute right-3 z-20 h-10 w-10 rounded-full border items-center justify-center shadow-md transition-colors border-[--border] bg-[--surface] hover:bg-[--surface-hover]"
             style={{ top: `${CARD_H / 2 - 20}px`, display: "none" }}
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
               <path d="M9 18l6-6-6-6" />
             </svg>
           </button>
@@ -316,7 +451,8 @@ export default function Projects() {
             style={{
               paddingLeft: "max(1.5rem, calc((100vw - 80rem) / 2 + 1.5rem))",
               scrollSnapType: "x mandatory",
-              scrollPaddingLeft: "max(1.5rem, calc((100vw - 80rem) / 2 + 1.5rem))",
+              scrollPaddingLeft:
+                "max(1.5rem, calc((100vw - 80rem) / 2 + 1.5rem))",
               scrollbarWidth: "none",
               msOverflowStyle: "none",
             }}
@@ -326,7 +462,11 @@ export default function Projects() {
                 key={p.id}
                 project={p}
                 isActive={activeProject?.id === p.id}
-                onClick={() => { setActiveProject(p); setFlipped(false); setSlideIndex(0); }}
+                onClick={() => {
+                  setActiveProject(p);
+                  setFlipped(false);
+                  setSlideIndex(0);
+                }}
               />
             ))}
             <div className="shrink-0 w-2" aria-hidden="true" />
@@ -341,10 +481,13 @@ export default function Projects() {
           aria-modal="true"
           aria-label={`${activeProject.client} — ${activeProject.project}`}
           onClick={closeProject}
-          className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md flex items-center justify-center p-4"
+          className="fixed inset-0 z-100 bg-black/85 backdrop-blur-md flex items-center justify-center p-4"
           style={{ animation: "fadeIn 150ms ease-out" }}
         >
-          <div onClick={(e) => e.stopPropagation()} style={{ perspective: "1400px" }}>
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{ perspective: "1400px" }}
+          >
             {/* Size-transitioning wrapper */}
             <div
               style={{
@@ -358,7 +501,8 @@ export default function Projects() {
                     ? `min(calc(80vw * ${RATIO_H} / ${RATIO_W}), 80vh)`
                     : `min(calc(80vw * ${RATIO_W} / ${RATIO_H}), 80vh)`
                   : `${CARD_H}px`,
-                transition: "width 700ms cubic-bezier(0.4,0,0.2,1), height 700ms cubic-bezier(0.4,0,0.2,1)",
+                transition:
+                  "width 700ms cubic-bezier(0.4,0,0.2,1), height 700ms cubic-bezier(0.4,0,0.2,1)",
               }}
             >
               {/* Flipping card */}
@@ -374,26 +518,37 @@ export default function Projects() {
               >
                 {/* Front face */}
                 <div
-                  style={{ backfaceVisibility: "hidden", border: "7px solid #ffffff" }}
+                  style={{
+                    backfaceVisibility: "hidden",
+                    border: "7px solid #ffffff",
+                  }}
                   className="absolute inset-0 rounded-2xl overflow-hidden"
                 >
                   <div
                     className="absolute inset-0"
-                    style={{ background: `linear-gradient(135deg, ${activeProject.color}44, ${activeProject.color}11)` }}
+                    style={{
+                      background: `linear-gradient(135deg, ${activeProject.color}44, ${activeProject.color}11)`,
+                    }}
                   >
                     <Image
                       src={activeProject.thumbnail}
                       alt={activeProject.client}
                       fill
                       className="object-cover"
-                      style={{ objectPosition: activeProject.thumbnailPosition ?? "center center" }}
+                      style={{
+                        objectPosition:
+                          activeProject.thumbnailPosition ?? "center center",
+                      }}
                       priority
                     />
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent" />
                   <div
                     className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider"
-                    style={{ background: activeProject.color, color: "#04122a" }}
+                    style={{
+                      background: activeProject.color,
+                      color: "#04122a",
+                    }}
                   >
                     {activeProject.year}
                   </div>
@@ -401,30 +556,52 @@ export default function Projects() {
                     <div className="text-[10px] font-mono uppercase tracking-wider opacity-60 mb-0.5">
                       {activeProject.project}
                     </div>
-                    <h3 className="text-lg font-bold leading-tight">{activeProject.client}</h3>
+                    <h3 className="text-lg font-bold leading-tight">
+                      {activeProject.client}
+                    </h3>
                   </div>
                 </div>
 
                 {/* Back face — inherits theme bg and text */}
                 <div
-                  style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)", border: "7px solid #ffffff" }}
-                  className="absolute inset-0 rounded-2xl overflow-hidden bg-[var(--bg)] text-[var(--text)]"
+                  style={{
+                    backfaceVisibility: "hidden",
+                    transform: "rotateY(180deg)",
+                    border: "7px solid #ffffff",
+                  }}
+                  className="absolute inset-0 rounded-2xl overflow-hidden bg-[--bg] text-[--text]"
                 >
                   {/* Close button */}
                   <button
                     type="button"
-                    onClick={(e) => { e.stopPropagation(); closeProject(); }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeProject();
+                    }}
                     aria-label="Close"
-                    className="absolute top-3 right-3 z-20 h-8 w-8 rounded-full border transition-colors flex items-center justify-center border-[var(--border)] bg-[var(--surface)] hover:bg-[var(--surface-hover)]"
+                    className="absolute top-3 right-3 z-20 h-8 w-8 rounded-full border transition-colors flex items-center justify-center border-[--border] bg-[--surface] hover:bg-[--surface-hover]"
                   >
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      width="15"
+                      height="15"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <path d="M18 6L6 18M6 6l12 12" />
                     </svg>
                   </button>
 
-                  <div className={`flex h-full ${isPortrait ? "flex-col" : "flex-row"}`}>
+                  <div
+                    className={`flex h-full ${isPortrait ? "flex-col" : "flex-row"}`}
+                  >
                     {/* Slideshow — top in portrait, left in landscape */}
-                    <div className={`relative shrink-0 overflow-hidden ${isPortrait ? "w-full h-[45%]" : "h-full w-[45%]"}`}>
+                    <div
+                      className={`relative shrink-0 overflow-hidden ${isPortrait ? "w-full h-[45%]" : "h-full w-[45%]"}`}
+                    >
                       {activeProject.images.map((img, i) => (
                         <div
                           key={img}
@@ -440,7 +617,9 @@ export default function Projects() {
                         </div>
                       ))}
                       {/* Fade into card body */}
-                      <div className={`absolute inset-0 ${isPortrait ? "bg-gradient-to-b" : "bg-gradient-to-r"} from-transparent via-transparent to-[var(--bg)]`} />
+                      <div
+                        className={`absolute inset-0 ${isPortrait ? "bg-linear-to-b" : "bg-linear-to-r"} from-transparent via-transparent to-[--bg]`}
+                      />
 
                       {activeProject.images.length > 1 && (
                         <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2 z-10">
@@ -455,7 +634,10 @@ export default function Projects() {
                                 width: i === slideIndex ? 16 : 6,
                                 height: 6,
                                 borderRadius: 3,
-                                background: i === slideIndex ? activeProject.color : "var(--border-strong)",
+                                background:
+                                  i === slideIndex
+                                    ? activeProject.color
+                                    : "var(--border-strong)",
                               }}
                             />
                           ))}
@@ -466,21 +648,49 @@ export default function Projects() {
                         <>
                           <button
                             type="button"
-                            onClick={() => setSlideIndex((i) => (i - 1 + activeProject.images.length) % activeProject.images.length)}
+                            onClick={() =>
+                              setSlideIndex(
+                                (i) =>
+                                  (i - 1 + activeProject.images.length) %
+                                  activeProject.images.length,
+                              )
+                            }
                             aria-label="Previous"
-                            className="absolute left-2 top-1/2 -translate-y-1/2 h-7 w-7 rounded-full border border-[var(--border)] bg-[var(--surface)] hover:bg-[var(--surface-hover)] transition-colors flex items-center justify-center z-10"
+                            className="absolute left-2 top-1/2 -translate-y-1/2 h-7 w-7 rounded-full border border-[--border] bg-[--surface] hover:bg-[--surface-hover] transition-colors flex items-center justify-center z-10"
                           >
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
                               <path d="M15 18l-6-6 6-6" />
                             </svg>
                           </button>
                           <button
                             type="button"
-                            onClick={() => setSlideIndex((i) => (i + 1) % activeProject.images.length)}
+                            onClick={() =>
+                              setSlideIndex(
+                                (i) => (i + 1) % activeProject.images.length,
+                              )
+                            }
                             aria-label="Next"
-                            className="absolute right-2 top-1/2 -translate-y-1/2 h-7 w-7 rounded-full border border-[var(--border)] bg-[var(--surface)] hover:bg-[var(--surface-hover)] transition-colors flex items-center justify-center z-10"
+                            className="absolute right-2 top-1/2 -translate-y-1/2 h-7 w-7 rounded-full border border-[--border] bg-[--surface] hover:bg-[--surface-hover] transition-colors flex items-center justify-center z-10"
                           >
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
                               <path d="M9 18l6-6-6-6" />
                             </svg>
                           </button>
@@ -490,24 +700,35 @@ export default function Projects() {
 
                     {/* Details */}
                     <div className="flex-1 min-h-0 flex flex-col p-5 sm:p-7">
-                      <div className="flex-1 min-h-0 overflow-y-auto pr-1 flex flex-col gap-5 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[var(--border)] hover:[&::-webkit-scrollbar-thumb]:bg-[var(--border-strong)]">
-
+                      <div className="flex-1 min-h-0 overflow-y-auto pr-1 flex flex-col gap-5 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[--border] hover:[&::-webkit-scrollbar-thumb]:bg-[--border-strong]">
                         {/* Metadata grid */}
                         <dl className="grid grid-cols-[auto_1fr] gap-x-5 gap-y-1.5 text-sm font-mono">
-                          <dt className="opacity-40 uppercase tracking-wider pt-0.5">Client</dt>
-                          <dd className="font-semibold text-base">{activeProject.client}</dd>
+                          <dt className="opacity-40 uppercase tracking-wider pt-0.5">
+                            Client
+                          </dt>
+                          <dd className="font-semibold text-base">
+                            {activeProject.client}
+                          </dd>
 
-                          <dt className="opacity-40 uppercase tracking-wider pt-0.5">Project</dt>
+                          <dt className="opacity-40 uppercase tracking-wider pt-0.5">
+                            Project
+                          </dt>
                           <dd className="text-base">{activeProject.project}</dd>
 
                           {(activeProject.partners?.length ?? 0) > 0 && (
                             <>
-                              <dt className="opacity-40 uppercase tracking-wider pt-0.5">Partners</dt>
-                              <dd className="text-base">{activeProject.partners!.join(", ")}</dd>
+                              <dt className="opacity-40 uppercase tracking-wider pt-0.5">
+                                Partners
+                              </dt>
+                              <dd className="text-base">
+                                {activeProject.partners!.join(", ")}
+                              </dd>
                             </>
                           )}
 
-                          <dt className="opacity-40 uppercase tracking-wider pt-0.5">Role</dt>
+                          <dt className="opacity-40 uppercase tracking-wider pt-0.5">
+                            Role
+                          </dt>
                           <dd className="text-base">{activeProject.role}</dd>
                         </dl>
 
@@ -516,7 +737,7 @@ export default function Projects() {
                           {activeProject.tags.map((tag) => (
                             <span
                               key={tag}
-                              className="px-3 py-1.5 rounded-full text-xs font-mono border border-[var(--border)] bg-[var(--surface)]"
+                              className="px-3 py-1.5 rounded-full text-xs font-mono border border-[--border] bg-[--surface]"
                             >
                               {tag}
                             </span>
@@ -527,7 +748,6 @@ export default function Projects() {
                         <p className="text-base opacity-75 leading-relaxed">
                           {activeProject.description}
                         </p>
-
                       </div>
                     </div>
                   </div>

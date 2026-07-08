@@ -10,6 +10,7 @@ import Projects from "@/components/projects";
 import Credentials from "@/components/credentials";
 import Footer from "@/components/footer";
 import PrintHeader from "@/components/print-header";
+import { Analytics } from "@vercel/analytics/next";
 
 export default function Home() {
   const [isDaytime, setIsDaytime] = useState(() => {
@@ -37,19 +38,33 @@ export default function Home() {
 
   return (
     <div
-      className="print-root h-screen overflow-y-scroll overflow-x-clip transition-colors duration-700 text-[var(--text)]"
+      className="print-root h-screen overflow-y-scroll overflow-x-clip transition-colors duration-700 text-[--text]"
       style={{ scrollSnapType: "y mandatory", scrollPaddingTop: navH }}
     >
-      <Navbar ref={navRef} isDaytime={isDaytime} onIsDaytimeChange={setIsDaytime} />
+      <Navbar
+        ref={navRef}
+        isDaytime={isDaytime}
+        onIsDaytimeChange={setIsDaytime}
+      />
       <div className="print-snap" style={snap}>
         <PrintHeader />
         <Hero />
       </div>
-      <div className="print-snap" style={snap}><About /></div>
-      <div className="print-snap" style={snap}><Skills isDaytime={isDaytime} /></div>
-      <div className="print-snap" style={snap}><Projects /></div>
-      <div className="print-snap" style={snap}><Credentials /></div>
-      <div id="footer" className="print-snap" style={snap}><Footer onToggleTheme={() => setIsDaytime((d) => !d)} /></div>
+      <div className="print-snap" style={snap}>
+        <About />
+      </div>
+      <div className="print-snap" style={snap}>
+        <Skills isDaytime={isDaytime} />
+      </div>
+      <div className="print-snap" style={snap}>
+        <Projects />
+      </div>
+      <div className="print-snap" style={snap}>
+        <Credentials />
+      </div>
+      <div id="footer" className="print-snap" style={snap}>
+        <Footer onToggleTheme={() => setIsDaytime((d) => !d)} />
+      </div>
       {/* Print-only resume pages */}
       {[1, 2].map((n) => (
         <div key={n} className="print-snap print-resume-page">
@@ -57,6 +72,7 @@ export default function Home() {
           <img src={`/resume-pages/page-${n}.png`} alt={`Resume page ${n}`} />
         </div>
       ))}
+      <Analytics />
     </div>
   );
 }
