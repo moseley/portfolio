@@ -42,7 +42,9 @@ export default function Footer({
             Email me →
           </a>
         </div>
-        <p className="print-only mt-8 text-base font-medium">jeremymoseley@me.com</p>
+        <p className="print-only mt-8 text-base font-medium">
+          jeremymoseley@me.com
+        </p>
         <p className="mt-5 text-sm font-mono opacity-50">
           Email is the best way to reach me.
         </p>
@@ -59,13 +61,38 @@ export default function Footer({
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="opacity-80 hover:opacity-100 transition-opacity underline underline-offset-4 decoration-[var(--link-deco)]"
+            className="opacity-80 hover:opacity-100 transition-opacity underline underline-offset-4 decoration-[--link-deco]"
           >
             Résumé ↗
           </a>
+          <span className="opacity-20">·</span>
+          <a
+            href="https://github.com/moseley"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="opacity-80 hover:opacity-100 transition-opacity underline underline-offset-4 decoration-[--link-deco]"
+          >
+            GitHub ↗
+          </a>
+          <span className="opacity-20">·</span>
+          <a
+            href="https://www.linkedin.com/in/jeremymoseley/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="opacity-80 hover:opacity-100 transition-opacity underline underline-offset-4 decoration-[--link-deco]"
+          >
+            LinkedIn ↗
+          </a>
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/qr-jeremymoseley.svg" alt="jeremymoseley.com" className="print-only mt-10" width={90} height={90} style={{ marginLeft: "auto", marginRight: "auto" }} />
+        <img
+          src="/qr-jeremymoseley.svg"
+          alt="jeremymoseley.com"
+          className="print-only mt-10"
+          width={90}
+          height={90}
+          style={{ marginLeft: "auto", marginRight: "auto" }}
+        />
         <div className="mt-16 text-xs font-mono opacity-50">
           © 2026 ·{" "}
           <button
