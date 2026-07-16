@@ -51,13 +51,6 @@ export default function Footer({
 
         <div className="print-hide mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm">
           <a
-            href="mailto:jeremymoseley@me.com"
-            className="opacity-80 hover:opacity-100 transition-opacity"
-          >
-            jeremymoseley@me.com
-          </a>
-          <span className="opacity-20">·</span>
-          <a
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
