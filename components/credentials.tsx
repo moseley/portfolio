@@ -50,7 +50,7 @@ export default function Credentials() {
             <img
               src="/certs/hpu/logo.svg"
               alt="Hawaii Pacific University"
-              className="h-16 opacity-80"
+              className="hpu-logo h-16"
             />
             <p className="text-sm opacity-50 font-mono mt-3">Honolulu, HI</p>
           </div>
