@@ -60,7 +60,7 @@ export const evening: Record<string, string> = {
   "--btn-primary-border": "rgba(255, 255, 255, 0.2)",
   "--resume-border": "rgba(255, 255, 255, 0.2)",
   "--resume-border-hover": "rgba(255, 255, 255, 0.4)",
-  "--logo-filter": "none",
+  "--logo-filter": "brightness(0) invert(1)",
   "--logo-opacity": "0.9",
   "--heading-shadow": "none",
 };
