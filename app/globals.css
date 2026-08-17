@@ -34,6 +34,7 @@
   --resume-border-hover: #6a6258;
   --logo-filter: brightness(0) saturate(0);
   --logo-opacity: 0.75;
+  --heading-shadow: -1px -1px 0 rgba(255, 255, 255, 0.6), 1px 1px 0 rgba(0, 0, 0, 0.6);
 }
 
 @theme inline {
@@ -57,9 +58,7 @@ pre {
 h1,
 h2,
 h3 {
-  text-shadow:
-    -1px -1px 0 rgba(255, 255, 255, 0.6),
-    1px 1px 0 rgba(0, 0, 0, 0.6);
+  text-shadow: var(--heading-shadow, none);
 }
 
 /* HPU logo: white on transparent — filter/opacity controlled by theme */

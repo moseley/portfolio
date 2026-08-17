@@ -36,7 +36,9 @@ export default function Hero() {
             See the work →
           </a>
           <a
-            href="#"
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block px-6 py-3 rounded-full text-sm font-medium border transition-colors border-[var(--resume-border)] hover:border-[var(--resume-border-hover)]"
           >
             Download résumé

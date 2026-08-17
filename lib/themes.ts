@@ -28,6 +28,7 @@ export const daytime: Record<string, string> = {
   "--resume-border-hover": "#a8a39b",
   "--logo-filter": "brightness(0) saturate(0)",
   "--logo-opacity": "0.75",
+  "--heading-shadow": "-1px -1px 0 rgba(255, 255, 255, 0.6), 1px 1px 0 rgba(0, 0, 0, 0.6)",
 };
 
 export const evening: Record<string, string> = {
@@ -61,4 +62,5 @@ export const evening: Record<string, string> = {
   "--resume-border-hover": "rgba(255, 255, 255, 0.4)",
   "--logo-filter": "none",
   "--logo-opacity": "0.9",
+  "--heading-shadow": "none",
 };

@@ -7,7 +7,7 @@ export default function Footer({
   onToggleTheme: () => void;
 }) {
   return (
-    <section className="px-6 pt-8 pb-10 sm:py-32 border-t transition-colors duration-700 border-[var(--border)]">
+    <section className="px-6 pt-8 pb-10 sm:py-32 border-t transition-colors duration-700 border-[--border]">
       <div className="max-w-7xl mx-auto text-center">
         <SectionLabel className="mb-6">new opportunities</SectionLabel>
         <h2
