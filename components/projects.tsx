@@ -56,9 +56,10 @@ const projects = [
     role: "Full-Stack Web Developer",
     year: "2023",
     color: "#22d3ee",
-    thumbnail: "/projects/comtac/training.png",
-    thumbnailPosition: "center 15%",
-    images: ["/projects/comtac/training.png"],
+    thumbnail: "/projects/comtac/simulation.jpg",
+    thumbnailPosition: "center 30%",
+    images: ["/projects/comtac/simulation.jpg"],
+    website: "https://www.comtactraining.com",
     description:
       "Comtac's firefighter training app is a voice-driven simulation built on a real-time speech and media pipeline. I developed the web app, which captures the trainee's microphone audio and transcribes it with ElevenLabs, sends the transcribed commands to the OpenAI API to generate context-appropriate responses, then synthesizes dispatcher and arriving-unit speech back through ElevenLabs. Voice recordings are stored on Amazon S3, and all incident video—including the 360-degree structure walkthroughs—is hosted and streamed through Mux. Session data, including the self-evaluation and final score, is captured and saved for review.",
     tags: [
@@ -103,6 +104,7 @@ type Project = {
   images: string[];
   description: string;
   tags: string[];
+  website?: string;
 };
 
 // 63:88 portrait ratio throughout
@@ -352,6 +354,14 @@ export default function Projects() {
                   Year
                 </dt>
                 <dd className="text-base">{p.year}</dd>
+                {p.website && (
+                  <>
+                    <dt style={{ opacity: 0.4 }} className="uppercase tracking-wider">
+                      Website
+                    </dt>
+                    <dd className="text-base">{p.website.replace(/^https?:\/\/www\./, "")}</dd>
+                  </>
+                )}
               </dl>
               <div className="flex flex-wrap gap-2 mb-3">
                 {p.tags.map((tag) => (
@@ -730,6 +740,24 @@ export default function Projects() {
                             Role
                           </dt>
                           <dd className="text-base">{activeProject.role}</dd>
+
+                          {activeProject.website && (
+                            <>
+                              <dt className="opacity-40 uppercase tracking-wider pt-0.5">
+                                Website
+                              </dt>
+                              <dd className="text-base">
+                                <a
+                                  href={activeProject.website}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="underline underline-offset-4 decoration-[--link-deco] hover:opacity-70 transition-opacity"
+                                >
+                                  {activeProject.website.replace(/^https?:\/\/www\./, "")}
+                                </a>
+                              </dd>
+                            </>
+                          )}
                         </dl>
 
                         {/* Tags */}
