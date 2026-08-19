@@ -15,9 +15,16 @@ const robotoMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Jeremy Moseley - Software Engineer Portfolio",
+  title: "Jeremy Moseley — Full-Stack Engineer",
   description:
-    "Portfolio website of Jeremy Moseley, an app developer working in Next.js and React.",
+    "Jeremy Moseley is a full-stack engineer with 20+ years of shipping web, mobile, and cloud products. Based in Silicon Valley.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
