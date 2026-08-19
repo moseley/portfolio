@@ -14,7 +14,7 @@ export default function Footer({
           className="font-bold leading-[0.95] tracking-tight"
           style={{ fontSize: "clamp(2.5rem, 8vw, 7rem)" }}
         >
-          Building a{" "}
+          Ready to{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{
@@ -22,9 +22,9 @@ export default function Footer({
               textShadow: "none",
             }}
           >
-            team
+            build
           </span>
-          ?
+          {" "}with you
         </h2>
         <P className="mt-8 max-w-2xl mx-auto">
           I&apos;m looking for a team where craft matters. Two decades of
