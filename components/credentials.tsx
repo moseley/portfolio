@@ -17,6 +17,7 @@ const certs: Cert[] = [
   { slug: "introduction-to-claude-cowork", title: "Introduction to Claude Cowork", verifyUrl: "https://verify.skilljar.com/c/fiysgzukztbq" },
   { slug: "introduction-to-model-context-protocol", title: "Introduction to Model Context Protocol", verifyUrl: "https://verify.skilljar.com/c/o8fwe7aipqbm" },
   { slug: "model-context-protocol-advanced-topics", title: "MCP: Advanced Topics", verifyUrl: "https://verify.skilljar.com/c/7g7d5itc4hqs" },
+  { slug: "building-with-the-claude-api", title: "Building with the Claude API", verifyUrl: "https://verify.skilljar.com/c/byiabs6ahfgv" },
 ];
 
 const CloseIcon = () => (
