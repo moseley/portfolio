@@ -27,12 +27,9 @@ const Navbar = React.forwardRef<HTMLElement, {
     const check = () => {
       if (overrideRef.current !== null) return;
       const now = new Date();
-      const nowMins = now.getHours() * 60 + now.getMinutes();
-      const isoMins = (iso: string) => {
-        const [h, m] = iso.split("T")[1].split(":").map(Number);
-        return h * 60 + m;
-      };
-      onIsDaytimeChange(nowMins >= isoMins(sun.riseIso) && nowMins < isoMins(sun.setIso));
+      const rise = new Date(sun.riseIso);
+      const set = new Date(sun.setIso);
+      onIsDaytimeChange(now >= rise && now < set);
     };
     check();
     const i = setInterval(check, 60000);
@@ -60,7 +57,7 @@ const Navbar = React.forwardRef<HTMLElement, {
               width={80}
               height={80}
               className=""
-              style={{ filter: isDaytime ? undefined : "invert(1)" }}
+              style={{ filter: "var(--logo-filter)" }}
             />
           </Link>
           {showThemePicker && (

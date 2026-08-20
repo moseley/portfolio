@@ -54,7 +54,7 @@ export default function Home() {
         <About />
       </div>
       <div className="print-snap" style={snap}>
-        <Skills isDaytime={isDaytime} />
+        <Skills />
       </div>
       <div className="print-snap" style={snap}>
         <Projects />

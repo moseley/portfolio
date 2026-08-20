@@ -20,7 +20,7 @@ const tools: Tool[] = [
   { name: "Hermes",      icon: "/icons/hermes.png",    mono: true },
 ];
 
-export default function Skills({ isDaytime }: { isDaytime: boolean }) {
+export default function Skills() {
   return (
     <section className="px-6 pt-8 pb-10 sm:py-24 border-t transition-colors duration-700 border-[var(--border)]">
       <div className="max-w-7xl mx-auto">
@@ -37,7 +37,7 @@ export default function Skills({ isDaytime }: { isDaytime: boolean }) {
                   width={22}
                   height={22}
                   className="opacity-80 group-hover:opacity-100 transition-opacity"
-                  style={t.mono ? { filter: isDaytime ? undefined : "invert(1)" } : undefined}
+                  style={t.mono ? { filter: "var(--logo-filter)" } : undefined}
                 />
               </div>
               <div
