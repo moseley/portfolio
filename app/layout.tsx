@@ -18,13 +18,6 @@ export const metadata: Metadata = {
   title: "Jeremy Moseley — Full-Stack Engineer",
   description:
     "Jeremy Moseley is a full-stack engineer with 20+ years of shipping web, mobile, and cloud products. Based in Silicon Valley.",
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon.svg", type: "image/svg+xml" },
-    ],
-    apple: "/icon.svg",
-  },
 };
 
 export default function RootLayout({
