@@ -89,8 +89,10 @@ endobj
 /Font <<
 /F1 7 0 R
 /F1-0 12 0 R
+/F1-1 13 0 R
 /F2 8 0 R
-/F2-0 13 0 R
+/F2-0 14 0 R
+/F2-1 15 0 R
 /F3 9 0 R
 >>
 /ProcSet [ /ImageB /ImageC /ImageI /PDF /Text ]
@@ -105,9 +107,10 @@ endobj
 endobj
 11 0 obj
 <<
-/Length 2949
+/Length 3101
 >>
 stream
+q
 q
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
 q
@@ -269,6 +272,27 @@ T*
 ET
 Q
 
+Q
+q
+0.0 0.0 612 792 re
+W
+n
+1 0 0 1 0 0 cm
+BT
+/F1-1 12 Tf
+14.4 TL
+ET
+BT
+/F2-1 10 Tf
+12 TL
+ET
+BT
+1 0 0 1 69 352.36 Tm
+(Claude Platform 101) Tj
+T*
+ET
+Q
+
 endstream
 endobj
 12 0 obj
@@ -282,6 +306,24 @@ endobj
 endobj
 13 0 obj
 <<
+/BaseFont /Helvetica
+/Encoding /WinAnsiEncoding
+/Name /F1
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+14 0 obj
+<<
+/BaseFont /Helvetica-Oblique
+/Encoding /WinAnsiEncoding
+/Name /F2
+/Subtype /Type1
+/Type /Font
+>>
+endobj
+15 0 obj
+<<
 /BaseFont /Helvetica-Oblique
 /Encoding /WinAnsiEncoding
 /Name /F2
@@ -290,7 +332,7 @@ endobj
 >>
 endobj
 xref
-0 14
+0 16
 0000000000 65535 f 
 0000000015 00000 n 
 0000000261 00000 n 
@@ -302,15 +344,17 @@ xref
 0000003286 00000 n 
 0000003398 00000 n 
 0000003513 00000 n 
-0000003772 00000 n 
-0000006774 00000 n 
-0000006882 00000 n 
+0000003798 00000 n 
+0000006952 00000 n 
+0000007060 00000 n 
+0000007168 00000 n 
+0000007284 00000 n 
 trailer
 <<
-/Size 14
+/Size 16
 /Root 3 0 R
 /Info 1 0 R
 >>
 startxref
-6998
+7400
 %%EOF
