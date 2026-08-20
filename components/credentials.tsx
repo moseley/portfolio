@@ -18,6 +18,7 @@ const certs: Cert[] = [
   { slug: "introduction-to-model-context-protocol", title: "Introduction to Model Context Protocol", verifyUrl: "https://verify.skilljar.com/c/o8fwe7aipqbm" },
   { slug: "model-context-protocol-advanced-topics", title: "MCP: Advanced Topics", verifyUrl: "https://verify.skilljar.com/c/7g7d5itc4hqs" },
   { slug: "building-with-the-claude-api", title: "Building with the Claude API", verifyUrl: "https://verify.skilljar.com/c/byiabs6ahfgv" },
+  { slug: "claude-platform-101", title: "Claude Platform 101", verifyUrl: "https://verify.skilljar.com/c/m6554u59nhs5" },
 ];
 
 const CloseIcon = () => (
