@@ -92,7 +92,7 @@ const Navbar = React.forwardRef<HTMLElement, {
             type="button"
             aria-label="Scroll to contact"
             onClick={() => { document.getElementById("footer")?.scrollIntoView({ behavior: "smooth" }); }}
-            className="flex w-9 h-9 rounded-full items-center justify-center border transition-colors border-[var(--btn-primary-border)] bg-[var(--text)] text-[var(--btn-primary-text)] hover:bg-transparent hover:text-[var(--text)]"
+            className="flex w-9 h-9 rounded-full items-center justify-center border transition-colors cursor-pointer border-[var(--btn-primary-border)] bg-[var(--text)] text-[var(--btn-primary-text)] hover:bg-transparent hover:text-[var(--text)]"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
