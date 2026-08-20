@@ -572,20 +572,15 @@ export default function Projects() {
                   </div>
                 </div>
 
-                {/* Back face — always dark so it reads well over any project image */}
+                {/* Back face — follows theme */}
                 <div
                   style={{
                     backfaceVisibility: "hidden",
                     transform: "rotateY(180deg)",
                     border: "7px solid #ffffff",
-                    background: "#0f1a2b",
-                    color: "#f0eae2",
-                    "--border": "rgba(255,255,255,0.12)",
-                    "--border-strong": "rgba(255,255,255,0.25)",
-                    "--surface": "rgba(255,255,255,0.06)",
-                    "--surface-hover": "rgba(255,255,255,0.12)",
-                    "--link-deco": "rgba(255,255,255,0.4)",
-                  } as React.CSSProperties}
+                    background: "var(--bg)",
+                    color: "var(--text)",
+                  }}
                   className="absolute inset-0 rounded-2xl overflow-hidden"
                 >
                   {/* Close button */}
@@ -635,7 +630,12 @@ export default function Projects() {
                       ))}
                       {/* Fade into card body */}
                       <div
-                        className={`absolute inset-0 ${isPortrait ? "bg-linear-to-b" : "bg-linear-to-r"} from-transparent via-transparent to-[#0f1a2b]`}
+                        className="absolute inset-0"
+                        style={{
+                          backgroundImage: isPortrait
+                            ? "linear-gradient(to bottom, transparent, transparent, var(--bg))"
+                            : "linear-gradient(to right, transparent, transparent, var(--bg))",
+                        }}
                       />
 
                       {activeProject.images.length > 1 && (
