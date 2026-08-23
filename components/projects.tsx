@@ -7,6 +7,25 @@ import SectionLabel from "@/components/section-label";
 const projects = [
   {
     id: 1,
+    client: "Comtac",
+    project: "Firefighter Training Simulation",
+    role: "Full-Stack Web Developer",
+    color: "#22d3ee",
+    thumbnail: "/projects/comtac/simulation.jpg",
+    thumbnailPosition: "center 30%",
+    images: ["/projects/comtac/simulation.jpg"],
+    website: "https://www.comtactraining.com",
+    description:
+      "Comtac's firefighter training app is a voice-driven simulation built on a real-time speech and media pipeline. I developed the web app, which captures the trainee's microphone audio and transcribes it with ElevenLabs, sends the transcribed commands to the OpenAI API to generate context-appropriate responses, then synthesizes dispatcher and arriving-unit speech back through ElevenLabs. Voice recordings are stored on Amazon S3, and all incident video—including the 360-degree structure walkthroughs—is hosted and streamed through Mux. Session data, including the self-evaluation and final score, is captured and saved for review.",
+    tags: [
+      "Web App Development",
+      "Simulation",
+      "Voice Interaction",
+      "E-Learning",
+    ],
+  },
+  {
+    id: 2,
     client: "Shell",
     project: "Eco-marathon",
     partners: ["Publicis"],
@@ -25,7 +44,7 @@ const projects = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     client: "Maserati",
     project: "Digital Event Campaigns",
     partners: ["Ross Madrid"],
@@ -45,25 +64,6 @@ const projects = [
       "Landing Pages",
       "Event Registration",
       "Print-to-Digital",
-    ],
-  },
-  {
-    id: 3,
-    client: "Comtac",
-    project: "Firefighter Training Simulation",
-    role: "Full-Stack Web Developer",
-    color: "#22d3ee",
-    thumbnail: "/projects/comtac/simulation.jpg",
-    thumbnailPosition: "center 30%",
-    images: ["/projects/comtac/simulation.jpg"],
-    website: "https://www.comtactraining.com",
-    description:
-      "Comtac's firefighter training app is a voice-driven simulation built on a real-time speech and media pipeline. I developed the web app, which captures the trainee's microphone audio and transcribes it with ElevenLabs, sends the transcribed commands to the OpenAI API to generate context-appropriate responses, then synthesizes dispatcher and arriving-unit speech back through ElevenLabs. Voice recordings are stored on Amazon S3, and all incident video—including the 360-degree structure walkthroughs—is hosted and streamed through Mux. Session data, including the self-evaluation and final score, is captured and saved for review.",
-    tags: [
-      "Web App Development",
-      "Simulation",
-      "Voice Interaction",
-      "E-Learning",
     ],
   },
   {
