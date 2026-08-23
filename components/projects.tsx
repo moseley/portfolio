@@ -11,7 +11,6 @@ const projects = [
     project: "Eco-marathon",
     partners: ["Publicis"],
     role: "Lead Engineer",
-    year: "2024",
     color: "#ffc800",
     thumbnail: "/projects/shell/eco-marathon.png",
     thumbnailPosition: "0% 0%",
@@ -31,7 +30,6 @@ const projects = [
     project: "Digital Event Campaigns",
     partners: ["Ross Madrid"],
     role: "Digital Campaign Developer",
-    year: "2023",
     color: "#2563eb",
     thumbnail: "/projects/maserati/winter.png",
     thumbnailPosition: "center 80%",
@@ -54,7 +52,6 @@ const projects = [
     client: "Comtac",
     project: "Firefighter Training Simulation",
     role: "Full-Stack Web Developer",
-    year: "2023",
     color: "#22d3ee",
     thumbnail: "/projects/comtac/simulation.jpg",
     thumbnailPosition: "center 30%",
@@ -75,7 +72,6 @@ const projects = [
     project: "Journey",
     partners: ["Ross Madrid"],
     role: "Full-Stack Web Developer",
-    year: "2013",
     color: "#0d9488",
     thumbnail: "/projects/beechcraft/journey.png",
     thumbnailPosition: "center 30%",
@@ -97,7 +93,6 @@ type Project = {
   project: string;
   partners?: string[];
   role: string;
-  year: string;
   color: string;
   thumbnail: string;
   thumbnailPosition?: string;
@@ -347,13 +342,6 @@ export default function Projects() {
                   Role
                 </dt>
                 <dd className="text-base">{p.role}</dd>
-                <dt
-                  style={{ opacity: 0.4 }}
-                  className="uppercase tracking-wider"
-                >
-                  Year
-                </dt>
-                <dd className="text-base">{p.year}</dd>
                 {p.website && (
                   <>
                     <dt style={{ opacity: 0.4 }} className="uppercase tracking-wider">
@@ -553,15 +541,7 @@ export default function Projects() {
                     />
                   </div>
                   <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent" />
-                  <div
-                    className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider"
-                    style={{
-                      background: activeProject.color,
-                      color: "#04122a",
-                    }}
-                  >
-                    {activeProject.year}
-                  </div>
+
                   <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
                     <div className="text-[10px] font-mono uppercase tracking-wider opacity-60 mb-0.5">
                       {activeProject.project}
