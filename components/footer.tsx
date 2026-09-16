@@ -7,7 +7,7 @@ export default function Footer({
   onToggleTheme: () => void;
 }) {
   return (
-    <section className="px-6 pt-8 pb-10 sm:py-32 border-t transition-colors duration-700 border-[--border]">
+    <section className="px-6 pt-8 pb-10 sm:py-32 border-t transition-colors duration-700 border-(--border)">
       <div className="max-w-7xl mx-auto text-center">
         <SectionLabel className="mb-6">new opportunities</SectionLabel>
         <h2
@@ -23,8 +23,8 @@ export default function Footer({
             }}
           >
             build
-          </span>
-          {" "}with you
+          </span>{" "}
+          with you
         </h2>
         <P className="mt-8 max-w-2xl mx-auto">
           I&apos;m looking for a team where craft matters. Two decades of
@@ -54,7 +54,7 @@ export default function Footer({
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="opacity-80 hover:opacity-100 transition-opacity underline underline-offset-4 decoration-[--link-deco]"
+            className="opacity-80 hover:opacity-100 transition-opacity underline underline-offset-4 decoration-(--link-deco)"
           >
             Résumé ↗
           </a>
@@ -63,7 +63,7 @@ export default function Footer({
             href="https://github.com/moseley"
             target="_blank"
             rel="noopener noreferrer"
-            className="opacity-80 hover:opacity-100 transition-opacity underline underline-offset-4 decoration-[--link-deco]"
+            className="opacity-80 hover:opacity-100 transition-opacity underline underline-offset-4 decoration-(--link-deco)"
           >
             GitHub ↗
           </a>
@@ -72,7 +72,7 @@ export default function Footer({
             href="https://www.linkedin.com/in/jeremymoseley/"
             target="_blank"
             rel="noopener noreferrer"
-            className="opacity-80 hover:opacity-100 transition-opacity underline underline-offset-4 decoration-[--link-deco]"
+            className="opacity-80 hover:opacity-100 transition-opacity underline underline-offset-4 decoration-(--link-deco)"
           >
             LinkedIn ↗
           </a>

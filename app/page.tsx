@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { daytime, evening } from "@/lib/themes";
 import Navbar from "@/components/navbar";
 import Hero from "@/components/hero";
 import About from "@/components/about";
 import Skills from "@/components/skills";
-import Projects from "@/components/projects";
+import SelectedWork from "@/components/selected-work";
 import Credentials from "@/components/credentials";
 import Footer from "@/components/footer";
 import PrintHeader from "@/components/print-header";
@@ -21,6 +21,18 @@ export default function Home() {
   const navRef = useRef<HTMLElement>(null);
   const [navH, setNavH] = useState(80);
 
+  useLayoutEffect(() => {
+    if (!window.location.hash.match(/^#work-[\w-]+(?:--[\w-]+)?$/)) return;
+    window.history.replaceState(
+      null,
+      "",
+      window.location.pathname + window.location.search,
+    );
+    window.scrollTo(0, 0);
+    const animationFrame = requestAnimationFrame(() => window.scrollTo(0, 0));
+    return () => cancelAnimationFrame(animationFrame);
+  }, []);
+
   useEffect(() => {
     const theme = isDaytime ? daytime : evening;
     const root = document.documentElement;
@@ -34,35 +46,33 @@ export default function Home() {
     return () => ro.disconnect();
   }, []);
 
-  const snap: React.CSSProperties = { scrollSnapAlign: "start" };
-
   return (
     <div
-      className="print-root h-screen overflow-y-scroll overflow-x-clip transition-colors duration-700 text-[--text]"
-      style={{ scrollSnapType: "y mandatory", scrollPaddingTop: navH }}
+      className="print-root min-h-screen overflow-x-clip transition-colors duration-700 text-(--text)"
+      style={{ scrollPaddingTop: navH }}
     >
       <Navbar
         ref={navRef}
         isDaytime={isDaytime}
         onIsDaytimeChange={setIsDaytime}
       />
-      <div className="print-snap" style={snap}>
+      <div className="print-snap">
         <PrintHeader />
         <Hero />
       </div>
-      <div className="print-snap" style={snap}>
+      <div className="print-snap">
         <About />
       </div>
-      <div className="print-snap" style={snap}>
+      <div className="print-snap">
         <Skills />
       </div>
-      <div className="print-snap" style={snap}>
-        <Projects />
+      <div className="print-snap">
+        <SelectedWork />
       </div>
-      <div className="print-snap" style={snap}>
+      <div className="print-snap">
         <Credentials />
       </div>
-      <div id="footer" className="print-snap" style={snap}>
+      <div id="footer" className="print-snap">
         <Footer onToggleTheme={() => setIsDaytime((d) => !d)} />
       </div>
       {/* Print-only resume pages */}

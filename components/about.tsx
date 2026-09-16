@@ -3,7 +3,7 @@ import { P } from "@/components/ui";
 
 export default function About() {
   return (
-    <section className="px-6 pt-8 pb-10 sm:py-24 border-t transition-colors duration-700 border-[var(--border)]">
+    <section className="px-6 pt-8 pb-10 sm:py-24 border-t transition-colors duration-700 border-(--border)">
       <div className="print-stack max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8">
         <div className="md:col-span-4">
           <SectionLabel>about</SectionLabel>

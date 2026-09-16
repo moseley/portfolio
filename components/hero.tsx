@@ -39,7 +39,7 @@ export default function Hero() {
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-6 py-3 rounded-full text-sm font-medium border transition-colors border-[var(--resume-border)] hover:border-[var(--resume-border-hover)]"
+            className="inline-block px-6 py-3 rounded-full text-sm font-medium border transition-colors border-(--resume-border) hover:border-(--resume-border-hover)"
           >
             Download résumé
           </a>
@@ -49,7 +49,7 @@ export default function Hero() {
           {tags.map((t, i) => (
             <span
               key={t}
-              className="px-4 py-1.5 rounded-full text-xs font-mono border backdrop-blur-sm border-[var(--border)] bg-[var(--surface-tag)]"
+              className="px-4 py-1.5 rounded-full text-xs font-mono border backdrop-blur-sm border-(--border) bg-(--surface-tag)"
               style={{
                 animation: `float 6s ease-in-out infinite`,
                 animationDelay: `${i * 0.4}s`,

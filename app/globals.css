@@ -34,7 +34,14 @@
   --resume-border-hover: #6a6258;
   --logo-filter: brightness(0) saturate(0);
   --logo-opacity: 0.75;
-  --heading-shadow: -1px -1px 0 rgba(255, 255, 255, 0.6), 1px 1px 0 rgba(0, 0, 0, 0.6);
+  --heading-shadow:
+    -1px -1px 0 rgba(255, 255, 255, 0.6), 1px 1px 0 rgba(0, 0, 0, 0.6);
+  --fg: var(--text);
+  --fg-muted: var(--muted);
+  --line: var(--border);
+  --line-soft: var(--border);
+  --accent: var(--accent-2);
+  --hover: var(--surface-hover);
 }
 
 @theme inline {
@@ -42,6 +49,9 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-line: var(--line);
+  --color-fg-muted: var(--fg-muted);
+  --color-hover: var(--hover);
 }
 
 body {
@@ -65,7 +75,9 @@ h3 {
 .hpu-logo {
   filter: var(--logo-filter);
   opacity: var(--logo-opacity);
-  transition: filter 0.7s, opacity 0.7s;
+  transition:
+    filter 0.7s,
+    opacity 0.7s;
 }
 
 @keyframes filmGrain {

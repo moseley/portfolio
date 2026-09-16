@@ -19,7 +19,7 @@ export function Section({
   return (
     <section
       className={cx(
-        "px-6 pt-8 pb-10 sm:py-24 border-t transition-colors duration-700 border-[var(--border)]",
+        "px-6 pt-8 pb-10 sm:py-24 border-t transition-colors duration-700 border-(--border)",
         className,
       )}
     >
@@ -64,7 +64,7 @@ export function Tag({
   return (
     <span
       className={cx(
-        "px-4 py-1.5 rounded-full text-xs font-mono border backdrop-blur-sm border-[var(--border)] bg-[var(--surface-tag)]",
+        "px-4 py-1.5 rounded-full text-xs font-mono border backdrop-blur-sm border-(--border) bg-(--surface-tag)",
         className,
       )}
     >
@@ -115,7 +115,7 @@ export function ButtonSecondary({
   ...props
 }: SharedButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) {
   const base = cx(
-    "inline-block px-6 py-3 rounded-full text-sm font-medium border transition-colors border-[var(--resume-border)] hover:border-[var(--resume-border-hover)]",
+    "inline-block px-6 py-3 rounded-full text-sm font-medium border transition-colors border-(--resume-border) hover:border-(--resume-border-hover)",
     className,
   );
   if (href) {
@@ -143,7 +143,7 @@ export function Overlay({
 }) {
   return (
     <div
-      className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md flex items-center justify-center"
+      className="fixed inset-0 z-100 bg-black/85 backdrop-blur-md flex items-center justify-center"
       onClick={onClick}
     >
       {children}
@@ -218,7 +218,9 @@ export function P({
   className?: string;
 }) {
   return (
-    <p className={cx("text-lg leading-relaxed opacity-80", className)}>{children}</p>
+    <p className={cx("text-lg leading-relaxed opacity-80", className)}>
+      {children}
+    </p>
   );
 }
 
@@ -234,7 +236,7 @@ export function SurfaceCard({
   onClick?: () => void;
 }) {
   const base = cx(
-    "rounded-2xl border transition-colors border-[var(--border)] bg-[var(--surface)]",
+    "rounded-2xl border transition-colors border-(--border) bg-(--surface)",
     className,
   );
   if (onClick) {
