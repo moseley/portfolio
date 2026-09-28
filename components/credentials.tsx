@@ -4,7 +4,13 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import SectionLabel from "@/components/section-label";
 
-type Cert = { slug: string; title: string; verifyUrl?: string };
+type Cert = {
+  slug: string;
+  title: string;
+  verifyUrl?: string;
+  imgPath?: string;
+  sourceLabel?: string;
+};
 
 const certs: Cert[] = [
   {
@@ -66,6 +72,73 @@ const certs: Cert[] = [
     slug: "claude-platform-101",
     title: "Claude Platform 101",
     verifyUrl: "https://verify.skilljar.com/c/m6554u59nhs5",
+  },
+];
+
+const googleAiFeatured: Cert = {
+  slug: "google-ai",
+  title: "Google AI",
+  imgPath: "/certs/gemini/google-ai.png",
+  sourceLabel: "Google AI Professional · Certificate",
+  verifyUrl: "https://www.coursera.org/verify/professional-cert/3XV0CV9CROT9",
+};
+
+const googleCerts: Cert[] = [
+  {
+    slug: "ai-fundamentals",
+    title: "AI Fundamentals",
+    imgPath: "/certs/gemini/ai-fundamentals.png",
+    sourceLabel: "Google AI Professional · Certificate",
+    verifyUrl: "https://www.coursera.org/verify/QBMB135B7HYQ",
+  },
+  {
+    slug: "ai-for-brainstorming-and-planning",
+    title: "AI for Brainstorming and Planning",
+    imgPath: "/certs/gemini/ai-for-brainstorming-and-planning.png",
+    sourceLabel: "Google AI Professional · Certificate",
+    verifyUrl: "https://www.coursera.org/verify/2RFAKO0YLZCX",
+  },
+  {
+    slug: "ai-for-research-and-insights",
+    title: "AI for Research and Insights",
+    imgPath: "/certs/gemini/ai-for-research-and-insights.png",
+    sourceLabel: "Google AI Professional · Certificate",
+    verifyUrl: "https://www.coursera.org/verify/QBAYF61762VA",
+  },
+  {
+    slug: "ai-for-writing-and-communicating",
+    title: "AI for Writing and Communicating",
+    imgPath: "/certs/gemini/ai-for-writing-and-communicating.png",
+    sourceLabel: "Google AI Professional · Certificate",
+    verifyUrl: "https://www.coursera.org/verify/U1M7X1SWZVEX",
+  },
+  {
+    slug: "ai-for-content-creation",
+    title: "AI for Content Creation",
+    imgPath: "/certs/gemini/ai-for-content-creation.png",
+    sourceLabel: "Google AI Professional · Certificate",
+    verifyUrl: "https://www.coursera.org/verify/0KI8YXYICG1F",
+  },
+  {
+    slug: "ai-for-data-analysis",
+    title: "AI for Data Analysis",
+    imgPath: "/certs/gemini/ai-for-data-analysis.png",
+    sourceLabel: "Google AI Professional · Certificate",
+    verifyUrl: "https://www.coursera.org/verify/74WQCC3NQ7E6",
+  },
+  {
+    slug: "ai-for-app-building",
+    title: "AI for App Building",
+    imgPath: "/certs/gemini/ai-for-app-building.png",
+    sourceLabel: "Google AI Professional · Certificate",
+    verifyUrl: "https://www.coursera.org/verify/TSUT4AI563E1",
+  },
+  {
+    slug: "ai-for-app-deployment",
+    title: "AI for App Deployment",
+    imgPath: "/certs/gemini/ai-for-app-deployment.png",
+    sourceLabel: "Google AI Professional · Certificate",
+    verifyUrl: "https://www.coursera.org/verify/MOLUCOXWPBEE",
   },
 ];
 
@@ -163,6 +236,78 @@ export default function Credentials() {
               </button>
             ))}
           </div>
+
+          {/* Google AI Professional */}
+          <div className="flex items-baseline justify-between flex-wrap gap-4 mb-3 mt-20">
+            <h2 className="text-3xl md:text-4xl font-bold">
+              Google AI Professional.
+            </h2>
+            <a
+              href="https://grow.google/certificates/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-mono opacity-50 hover:opacity-100 transition-opacity"
+            >
+              grow.google ↗
+            </a>
+          </div>
+
+          {/* Featured cert + badges side by side */}
+          <div className="flex flex-col md:flex-row gap-6 mt-8 items-end">
+            {/* Featured Google AI cert */}
+            <button
+              type="button"
+              onClick={() => setActiveCert(googleAiFeatured)}
+              className="group shrink-0 w-full md:w-[420px] rounded-xl border overflow-hidden transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 border-(--border) bg-(--surface) hover:bg-(--surface-hover) hover:border-(--border-strong)"
+            >
+              <div className="relative aspect-[1649/1275] overflow-hidden bg-(--surface-tag)">
+                <Image
+                  src={googleAiFeatured.imgPath!}
+                  alt={googleAiFeatured.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 384px"
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              </div>
+              <div className="p-3">
+                <div className="text-[9px] font-mono uppercase tracking-wider opacity-50 mb-0.5">
+                  Certificate
+                </div>
+                <div className="text-sm font-semibold">{googleAiFeatured.title}</div>
+              </div>
+            </button>
+
+            {/* Course badges — 2×4 on mobile, 4×2 on sm+ */}
+            <div className="flex-1 grid grid-cols-2 sm:grid-cols-4 gap-3 content-center self-stretch items-center">
+              {googleCerts.map((c) => (
+                <a
+                  key={c.slug}
+                  href={c.verifyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-lg"
+                  aria-label={`Verify: ${c.title}`}
+                >
+                  {/* Tooltip — centered above the circle portion (~44% from left) */}
+                  <div className="pointer-events-none absolute top-[-12%] left-[44%] -translate-x-1/2 flex items-center gap-1 whitespace-nowrap rounded-md px-2 py-1 text-[10px] font-mono bg-(--surface) border border-(--border) opacity-0 group-hover:opacity-100 transition-opacity duration-150 z-10">
+                    Verify
+                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M14 3h7v7"/><path d="M10 14L21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/>
+                    </svg>
+                  </div>
+                  <div className="relative w-[85%] aspect-square">
+                    <Image
+                      src={c.imgPath!}
+                      alt={c.title}
+                      fill
+                      sizes="(max-width: 640px) 45vw, 130px"
+                      className="object-contain transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -182,7 +327,7 @@ export default function Credentials() {
             <div className="flex items-start justify-between gap-4 mb-4">
               <div>
                 <div className="text-[10px] font-mono uppercase tracking-[0.25em] opacity-60 mb-1 text-white">
-                  Anthropic Academy · Certificate
+                  {activeCert.sourceLabel ?? "Anthropic Academy · Certificate"}
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold leading-tight text-white">
                   {activeCert.title}
@@ -199,7 +344,7 @@ export default function Credentials() {
             </div>
             <div className="relative w-full aspect-4/3 rounded-xl overflow-hidden border border-white/10 bg-black/40">
               <Image
-                src={`/certs/anthropic/${activeCert.slug}.jpg`}
+                src={activeCert.imgPath ?? `/certs/anthropic/${activeCert.slug}.jpg`}
                 alt={activeCert.title}
                 fill
                 sizes="(max-width: 1024px) 100vw, 1024px"
@@ -211,6 +356,7 @@ export default function Credentials() {
               <a
                 href={
                   activeCert.verifyUrl ??
+                  activeCert.imgPath ??
                   `/certs/anthropic/${activeCert.slug}.jpg`
                 }
                 target="_blank"
